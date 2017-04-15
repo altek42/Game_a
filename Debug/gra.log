@@ -1,0 +1,4 @@
+﻿  Game.cpp
+d:\desktopfolder\c++\opengl\projekt_0.3\gra\game.cpp(39): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\desktopfolder\c++\opengl\projekt_0.3\gra\game.cpp(40): warning C4305: 'argument': truncation from 'double' to 'float'
+  gra.vcxproj -> D:\DesktopFolder\c++\openGL\projekt_0.3\gra\Debug\gra.exe
