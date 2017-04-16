@@ -1,7 +1,7 @@
 #include "Game.h"
 
 Game::Game() {
-	this->player = new Player("Models\\cube.obj", "Models\\cube.bmp");
+	this->player = new Player("Models\\a.obj", "Models\\a.bmp");
 
 	this->Root = new GameObject();
 
