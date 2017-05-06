@@ -2,8 +2,9 @@
 
 
 
-Animation::Animation(const char* path, int length,const char *name, GLuint textureID)
+Animation::Animation(const char* AnimationName, const char* path, int length,const char *fileName, GLuint textureID)
 {
+	this->name = AnimationName;
 	this->lenght = length;
 	this->models = new Model*[length];
 	//name_000000
@@ -13,7 +14,7 @@ Animation::Animation(const char* path, int length,const char *name, GLuint textu
 		char p[500];
 		strcpy(p, path);
 		strcat(p, "\\");
-		strcat(p, name);
+		strcat(p, fileName);
 		strcat(p, "_0000");
 		if (lenght >= 100) {
 			//errr
@@ -40,4 +41,15 @@ Animation::Animation(const char* path, int length,const char *name, GLuint textu
 
 Animation::~Animation()
 {
+}
+
+const char * Animation::GetName()
+{
+	return this->name;
+}
+
+void Animation::Draw(int frame)
+{
+	int n=frame / lenght;
+	models[n]->Draw();
 }

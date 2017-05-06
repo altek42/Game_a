@@ -3,23 +3,29 @@
 
 GameObject::GameObject()
 {
+	this->frame = 0;
 	this->model = NULL;
 	this->texture = NULL;
+	this->actualAnimation = NULL;
 	this->init();
 }
 
 GameObject::GameObject(const char * modelPath)
 {
+	this->frame = 0;
 	this->model = new Model(modelPath);
 	this->texture = NULL;
+	this->actualAnimation = NULL;
 	this->init();
 }
 
 GameObject::GameObject(const char *modelPath, const char *texturePath)
 {
+	this->frame = 0;
 	this->model = new Model(modelPath);
 	this->texture = new Texture(texturePath);
 	this->model->SetTextureID(this->texture->GetID());
+	this->actualAnimation = NULL;
 	this->init();
 }
 
@@ -41,6 +47,11 @@ void GameObject::SetRotation(const Vector3& v){
 void GameObject::SetScale(const Vector3& v){
     delete this->scale;
     this->scale = new Vector3(v);
+}
+
+void GameObject::SetAnimation(const char * name)
+{
+	this->actualAnimation = name;
 }
 
 Vector3* GameObject::GetPositionRef(){
@@ -67,6 +78,12 @@ void GameObject::AttachObject(GameObject*& o){
     this->objectsList.push_back(o);
 }
 
+void GameObject::AddAnimation(const char* animationName, const char* path, int length, const char *fileName)
+{
+	Animation* a = new Animation(animationName, path, length, fileName, this->texture->GetID());
+	this->animations.push_back(a);
+}
+
 
 void GameObject::Draw(){
     glPushMatrix();
@@ -87,7 +104,18 @@ void GameObject::Draw(){
             (*id)->Draw();
         }
 
-		if (this->model != NULL) {
+		bool anim = false;
+		if (this->actualAnimation != NULL) {
+			for (idAnim = this->animations.begin(); idAnim != this->animations.end(); idAnim++) {
+				if (strcmp(actualAnimation, (*idAnim)->GetName()) == 0 ) {
+					(*idAnim)->Draw(this->frame);
+					anim = true;
+					break;
+				}
+			}
+		}
+		
+		if (this->model != NULL && anim==false) {
 			this->model->Draw();
 		}
     glPopMatrix();
@@ -95,6 +123,7 @@ void GameObject::Draw(){
 
 void GameObject::FixedUpdate(int frame)
 {
+	this->frame = frame;
 	for (id = this->objectsList.begin(); id != this->objectsList.end(); id++) {
 		(*id)->FixedUpdate(frame);
 	}

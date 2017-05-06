@@ -6,12 +6,17 @@
 #include <cstdlib>
 class Animation
 {
+	const char* name;
 	int lenght;
 	Model** models;
 
 public:
-	Animation(const char*,int, const char*, GLuint);
+	Animation(const char*,const char*,int, const char*, GLuint);
 	~Animation();
+
+	const char* GetName();
+
+	void Draw(int);
 };
 
 
