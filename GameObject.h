@@ -38,7 +38,7 @@ public:
     void AttachObject(GameObject*&);
 
     virtual void Draw();
-
+	virtual void FixedUpdate(int);
 private:
 	void init();
 };

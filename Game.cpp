@@ -1,6 +1,8 @@
 #include "Game.h"
 
 Game::Game() {
+	this->frame = 0;
+
 	float amb[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	float dif[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	float spe[] = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -49,6 +51,15 @@ void Game::Update() {
 	obChild->TranslateRotation(Vector3(0,0.02,0));
 	obChildChild->TranslateRotation(Vector3(0.02, 0, 0));
     this->Root->Draw();
+}
+
+void Game::UpdateOnTimer()
+{
+	frame++;
+	if (frame > 60) {//per sec
+		frame = 0;
+	}
+	this->Root->FixedUpdate(frame);
 }
 
 void drawCube() {

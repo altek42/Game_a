@@ -78,19 +78,26 @@ void GameObject::Draw(){
         glRotatef(this->rotation->GetY(), 0.0f, 1.0f, 0.0f);
         glRotatef(this->rotation->GetZ(), 0.0f, 0.0f, 1.0f);
         
-        for(id = this->objectsList.begin(); id != this->objectsList.end(); id++){
-            (*id)->Draw();
-        }
-        
         glScalef(this->scale->GetX(),
                  this->scale->GetY(),
                  this->scale->GetZ()
                );
 
+        for(id = this->objectsList.begin(); id != this->objectsList.end(); id++){
+            (*id)->Draw();
+        }
+
 		if (this->model != NULL) {
 			this->model->Draw();
 		}
     glPopMatrix();
+}
+
+void GameObject::FixedUpdate(int frame)
+{
+	for (id = this->objectsList.begin(); id != this->objectsList.end(); id++) {
+		(*id)->FixedUpdate(frame);
+	}
 }
 
 void GameObject::init()

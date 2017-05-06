@@ -78,7 +78,6 @@ void DrawGLScene(GLvoid)
 	Mouse::Update();
 	game->Update();
 
-
 	if(Keyboard::GetKey() == 'k'){
 		Camera::Delete();
 		glutDestroyWindow(window);
@@ -93,4 +92,5 @@ void DrawGLScene(GLvoid)
 
 void OnTimer(int id) {
 	glutTimerFunc(MILI_SECONS_FRAME, OnTimer, 0);
+	game->UpdateOnTimer();
 }

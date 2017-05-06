@@ -17,15 +17,15 @@ void drawNone(void);
 class Game
 {
 private:
+	int frame;
 	GameObject *player;
 	GameObject *Root;
 	GameObject *ob, *obChild, *obChildChild;
-	//GameObject *arena;
 public:
 	Game();
 	~Game();
 	void Update();
-
+	void UpdateOnTimer();
 private:
 
 };
