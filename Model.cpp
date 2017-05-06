@@ -73,7 +73,15 @@ void Model::Draw()
 {
 	glPushMatrix();
 	
-	glColor3f(0.5, 0.5, 0.5);
+	float m0_amb[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	float m0_dif[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	float m0_spe[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+	glMaterialfv(GL_FRONT, GL_AMBIENT, m0_amb);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, m0_dif);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, m0_spe);
+	glMaterialf(GL_FRONT, GL_SHININESS, 20.0f);
+
+	//glColor3f(0.5, 0.5, 0.5);
 	glFrontFace(GL_CW);
 	//glPolygonMode(GL_FRONT, GL_FILL);
 	//glPolygonMode(GL_BACK, GL_LINE);
