@@ -51,24 +51,38 @@ void Light::DestroyLights()
 	}
 }
 
-void Light::SetAmbient(float, float, float, float)
+void Light::SetAmbient(float r, float g, float b, float a)
 {
+	this->amb[0] = r;
+	this->amb[1] = g;
+	this->amb[2] = b;
+	this->amb[3] = a;
 }
 
-void Light::SetDifuse(float, float, float, float)
+void Light::SetDifuse(float r, float g, float b, float a)
 {
+	this->dif[0] = r;
+	this->dif[1] = g;
+	this->dif[2] = b;
+	this->dif[3] = a;
 }
 
-void Light::SetSpecular(float, float, float, float)
+void Light::SetSpecular(float r, float g, float b, float a)
 {
+	this->spe[0] = r;
+	this->spe[1] = g;
+	this->spe[2] = b;
+	this->spe[3] = a;
 }
 
-void Light::SetPosition(Vector3)
+void Light::SetPosition(Vector3 position)
 {
+	this->Position = position;
 }
 
-void Light::SetType(char)
+void Light::SetType(char type)
 {
+	this->type = type;
 }
 
 void Light::Draw()
