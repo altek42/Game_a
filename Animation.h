@@ -4,6 +4,8 @@
 #include "Texture.h"
 #include <string>
 #include <cstdlib>
+#include <iostream>
+
 class Animation
 {
 	const char* name;

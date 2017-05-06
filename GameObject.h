@@ -44,7 +44,7 @@ public:
     void TranslateScale(const Vector3&);
 
 	void AttachObject(GameObject*&);
-	void AddAnimation(const char*, const char*, int, const char *);
+	void AddAnimation(const char* animationName, const char* path, int length, const char *fileName);
     virtual void Draw();
 	virtual void FixedUpdate(int);
 private:

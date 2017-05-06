@@ -22,15 +22,16 @@ Animation::Animation(const char* AnimationName, const char* path, int length,con
 
 		if (i < 10) {
 			strcat(p, "0");
-			char liczba;
-			_itoa(i, &liczba,10);
-			strcat(p, &liczba);
+			char liczba[3];
+			_itoa(i, liczba,10);
+			strcat(p, liczba);
 		}
 		else if (i < 100) {
-			char liczba[2];
+			char liczba[3];
 			_itoa(i, liczba, 10);
 			strcat(p, liczba);
 		}
+		strcat(p, ".obj");
 
 		models[i] = new Model(p);
 		models[i]->SetTextureID(textureID);
@@ -51,5 +52,6 @@ const char * Animation::GetName()
 void Animation::Draw(int frame)
 {
 	int n=frame / lenght;
+	std::cout << "N: " << n << std::endl;
 	models[n]->Draw();
 }
