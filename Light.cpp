@@ -2,6 +2,8 @@
 
 std::vector <Light*> Light::lightList;
 std::vector <Light*>::iterator Light::id;
+int Light::count=0;
+
 
 Light::Light(float* amb, float* dif, float* spe, float* pos)
 {
@@ -36,6 +38,8 @@ Light * Light::CreateLight(float *amb, float *dif, float *spe)
 	Light *l = new Light(amb, dif, spe, p);
 	lightList.push_back(l);
 
+	glEnable(GL_LIGHT0 + count);
+	count++;
 	return l;
 }
 
@@ -69,4 +73,12 @@ void Light::SetType(char)
 
 void Light::Draw()
 {
+	int i=0;
+	for (id = lightList.begin(); id != lightList.end(); id++, i++) {
+		glLightfv(GL_LIGHT0 + i, GL_AMBIENT, (*id)->amb );
+		glLightfv(GL_LIGHT0 + i, GL_DIFFUSE, (*id)->dif);
+		glLightfv(GL_LIGHT0 + i, GL_SPECULAR, (*id)->spe);
+		float p[] = { (*id)->Position.GetX(), (*id)->Position.GetY(), (*id)->Position.GetZ(), (float) (*id)->type };
+		glLightfv(GL_LIGHT0 + i, GL_POSITION, p);
+	}
 }

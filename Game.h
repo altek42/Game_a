@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Model.h"
 #include "Texture.h"
+#include "Light.h"
 
 void drawCube(void);
 void drawSphere(void);

@@ -1,6 +1,12 @@
 #include "Game.h"
 
 Game::Game() {
+	float amb[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	float dif[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	float spe[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	Light::CreateLight(amb, dif, spe);
+
+
 	this->player = new Player("Models\\a.obj", "Models\\a.bmp");
 
 	this->Root = new GameObject();
@@ -32,9 +38,11 @@ Game::~Game() {
     delete this->obChild;
     delete this->obChildChild;
     delete this->Root;
+	Light::DestroyLights();
 }
 
 void Game::Update() {
+	Light::Draw();
 	Camera::Draw();
 	obChild->TranslateRotation(Vector3(0,0.02,0));
 	obChildChild->TranslateRotation(Vector3(0.02, 0, 0));

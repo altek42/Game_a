@@ -9,6 +9,7 @@ class Light
 {
 	static std::vector <Light*> lightList;
 	static std::vector <Light*>::iterator id;
+	static int count;
 
 	float amb[4];
 	float dif[4];
