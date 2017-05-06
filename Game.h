@@ -20,6 +20,7 @@ private:
 	GameObject *player;
 	GameObject *Root;
 	GameObject *ob, *obChild, *obChildChild;
+	//GameObject *arena;
 public:
 	Game();
 	~Game();

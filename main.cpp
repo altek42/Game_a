@@ -78,16 +78,6 @@ void DrawGLScene(GLvoid)
 	Mouse::Update();
 	game->Update();
 
-	for (int ix = -5; ix <= 5; ix += 1) {
-		for (int iz = -5; iz <= 5; iz += 1) {
-			glColor3f(.5f + .1f * ix, .5f - .1f * iz, 0.0f);
-			glPushMatrix();
-			glTranslatef(ix, 1.0f, iz);
-			glutSolidSphere(.05f, 8, 8);
-			glPopMatrix();
-		}
-	}
-	
 
 	if(Keyboard::GetKey() == 'k'){
 		Camera::Delete();

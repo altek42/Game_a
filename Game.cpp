@@ -6,7 +6,8 @@ Game::Game() {
 	float spe[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	Light::CreateLight(amb, dif, spe);
 
-
+	GameObject *arena = new GameObject("Models\\arena.obj", "Models\\arena.bmp");
+	arena->TranslatePosition(Vector3(0, -1, 0));
 	this->player = new Player("Models\\a.obj", "Models\\a.bmp");
 
 	this->Root = new GameObject();
@@ -25,11 +26,12 @@ Game::Game() {
 
 
 	this->Root->AttachObject(player);
+	this->Root->AttachObject(arena);
 	this->Root->AttachObject(ob);
     this->ob->AttachObject(obChild);
     this->obChild->AttachObject(obChildChild);
 
-	Camera::SetPosition(Vector3(4, 6, 2));
+	Camera::SetPosition(Vector3(5, 5, 5));
 	Camera::SetTarget(player);
 }
 
