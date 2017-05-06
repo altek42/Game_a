@@ -78,11 +78,6 @@ void DrawGLScene(GLvoid)
 	Mouse::Update();
 	game->Update();
 
-	if(Keyboard::GetKey() == 'k'){
-		Camera::Delete();
-		glutDestroyWindow(window);
-	}
-
 	Keyboard::Update();
 
 	glFlush();
@@ -92,5 +87,11 @@ void DrawGLScene(GLvoid)
 
 void OnTimer(int id) {
 	glutTimerFunc(MILI_SECONS_FRAME, OnTimer, 0);
+
+	if (Keyboard::GetKey() == 'k') {
+		Camera::Delete();
+		glutDestroyWindow(window);
+	}
+
 	game->UpdateOnTimer();
 }

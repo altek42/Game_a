@@ -4,8 +4,8 @@
 
 Player::Player(const char *modelPath, const char *texturePath) : GameObject(modelPath, texturePath)
 {
-	this->speedWalk = 0.008;
-	this->speedJump = 0.02;
+	this->speedWalk = 0.0625;
+	this->speedJump = 0.125;
 }
 
 
@@ -15,15 +15,19 @@ Player::~Player()
 
 void Player::Draw()
 {
-	this->update();
 	GameObject::Draw();
 }
 
-void Player::update() {
+
+
+void Player::FixedUpdate(int frame) {
+	GameObject::FixedUpdate(frame);
+
 	float speed = speedWalk;
-	if (Keyboard::GetKey()==KEY_SPACE) {
+	/*if (Keyboard::GetKey()==KEY_SPACE) {
 		speed = speedJump;
-	}
+	}*/
+
 
 	if (Keyboard::isPressed('d')) {
 		this->TranslatePosition(Vector3(speed, 0, 0));

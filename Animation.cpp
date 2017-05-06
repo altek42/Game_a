@@ -51,7 +51,10 @@ const char * Animation::GetName()
 
 void Animation::Draw(int frame)
 {
-	int n=frame / lenght;
-	std::cout << "N: " << n << std::endl;
+	float f = (float)frame / 61.0f;
+	int n = f*lenght;
+
+	
+	//std::cout << "N: " << n <<"Frame: "<<frame<< std::endl;
 	models[n]->Draw();
 }

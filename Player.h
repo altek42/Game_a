@@ -15,8 +15,8 @@ public:
 	~Player();
 
 	void Draw();
+	void FixedUpdate(int);
 private:
-	void update();
 };
 
 #endif
