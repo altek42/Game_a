@@ -11,6 +11,7 @@ class Keyboard
 	static unsigned char key;
 public:
 	static void Update();
+	static void FixedUpdate();
 	static void OnKeyPress(unsigned char, int, int);
 	static void OnKeyUp(unsigned char, int, int);
 	static bool isPressed(unsigned char);

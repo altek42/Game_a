@@ -12,7 +12,6 @@ Game::Game() {
 	arena->TranslatePosition(Vector3(0, -1, 0));
 	this->player = new Player("Models\\a.obj", "Models\\a.bmp");
 	this->player->AddAnimation("Run", "Models\\Animations\\RunPlayer", 10, "a");
-	this->player->SetAnimation("Run");
 
 	this->Root = new GameObject();
 

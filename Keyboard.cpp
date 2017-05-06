@@ -12,6 +12,10 @@ Keyboard::~Keyboard() {
 
 void Keyboard::Update()
 {
+	
+}
+
+void Keyboard::FixedUpdate(){
 	if (delay <= 0) {
 		key = 0;
 	}
@@ -23,7 +27,7 @@ void Keyboard::Update()
 void Keyboard::OnKeyPress(unsigned char _key, int x, int y) {
 	if (!keyState[_key]) {
 		key=_key;
-		delay = 100;
+		delay = 10;
 	}
 	keyState[key] = true;
     //std::cout << "key: "<<key<<"   x: "<<x<<"   y: "<<y << std::endl;
