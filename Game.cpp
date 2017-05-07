@@ -11,9 +11,9 @@ Game::Game() {
 	GameObject *arena = new GameObject("Models\\arena.obj", "Models\\arena.bmp");
 	arena->TranslatePosition(Vector3(0, -0.9, 0));
 
-	this->player = new Player("Models\\a.obj", "Models\\a.bmp");
+	this->player = new Player("Models\\aSw.obj", "Models\\aSw.bmp");
 	this->player->AddAnimation("Run", "Models\\Animations\\RunPlayer", 10, "run");
-	this->player->AddAnimation("Attack", "Models\\Animations\\AttackPlayer", 10, "attack",21);
+	this->player->AddAnimation("Attack", "Models\\Animations\\AttackPlayer", 10, "attack",31);
 	this->player->TranslateRotation(Vector3(0, 180, 0));
 
 	this->Root = new GameObject();
