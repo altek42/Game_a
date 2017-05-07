@@ -9,10 +9,11 @@ void Animation::RestartAnimation()
 
 Animation::Animation(const char* AnimationName, const char* path, int length,const char *fileName, GLuint textureID)
 {
-	this->frameOffset = 61/ length;
+	this->SetAnimatinTime(61);
 	this->name = AnimationName;
 	this->lenght = length;
 	this->models = new Model*[length];
+	this->frameOffset = this->calcFrameOffset();
 	//name_000000
 
 	for (int i = 0; i < length; i++)
@@ -55,6 +56,11 @@ const char * Animation::GetName()
 	return this->name;
 }
 
+void Animation::SetAnimatinTime(int frameLenght)
+{
+	this->animationTime = frameLenght;
+}
+
 void Animation::Draw()
 {
 	
@@ -70,11 +76,16 @@ void Animation::FixedUpdate(int frame)
 {
 	if (this->frameOffset < 0) {
 		Animation::frameToShow++;
-		this->frameOffset = 61 / this->lenght;
+		this->frameOffset = this->calcFrameOffset();
 
 		if (Animation::frameToShow >= this->lenght) {
 			Animation::frameToShow = 0;
 		}
 	}
 	this->frameOffset--;
+}
+
+int Animation::calcFrameOffset()
+{
+	return ((this->animationTime+1) / this->lenght);
 }

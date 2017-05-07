@@ -13,7 +13,7 @@ Game::Game() {
 
 	this->player = new Player("Models\\a.obj", "Models\\a.bmp");
 	this->player->AddAnimation("Run", "Models\\Animations\\RunPlayer", 10, "run");
-	this->player->AddAnimation("Attack", "Models\\Animations\\AttackPlayer", 10, "attack");
+	this->player->AddAnimation("Attack", "Models\\Animations\\AttackPlayer", 10, "attack",21);
 	this->player->TranslateRotation(Vector3(0, 180, 0));
 
 	this->Root = new GameObject();

@@ -77,7 +77,12 @@ void GameObject::AttachObject(GameObject*& o){
 
 void GameObject::AddAnimation(const char* animationName, const char* path, int length, const char *fileName)
 {
+	this->AddAnimation(animationName, path, length, fileName, 61);
+}
+void GameObject::AddAnimation(const char* animationName, const char* path, int length, const char *fileName,int animatinTime)
+{
 	Animation* a = new Animation(animationName, path, length, fileName, this->texture->GetID());
+	a->SetAnimatinTime(animatinTime);
 	this->animations.push_back(a);
 }
 

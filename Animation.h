@@ -15,6 +15,7 @@ class Animation
 	int frameOffset;
 	Model** models;
 
+	int animationTime;
 public:
 	static void RestartAnimation();
 	
@@ -22,9 +23,13 @@ public:
 	~Animation();
 
 	const char* GetName();
+	void SetAnimatinTime(int frameLenght);
 
 	void Draw();
 	void FixedUpdate(int);
+private:
+	int calcFrameOffset();
+
 };
 
 
