@@ -45,4 +45,8 @@ void Player::FixedUpdate(int frame) {
 		this->TranslatePosition(Vector3(0, 0, -speed));
 		this->SetAnimation("Run");
 	}
+
+	if (Keyboard::GetKey() == 'f') {
+		this->SetAnimation("Attack");
+	}
 }

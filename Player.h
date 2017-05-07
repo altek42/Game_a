@@ -10,6 +10,7 @@ class Player :
 private:
 	float speedWalk;
 	float speedJump;
+	//bool isAction;
 public:
 	Player(const char*, const char*);
 	~Player();
