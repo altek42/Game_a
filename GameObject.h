@@ -24,7 +24,6 @@ protected:
 	Model* model;
 	Texture* texture;
 	
-	int frame;
 	const char* actualAnimation;
 public:
 	GameObject();

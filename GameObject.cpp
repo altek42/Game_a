@@ -3,7 +3,6 @@
 
 GameObject::GameObject()
 {
-	this->frame = 0;
 	this->model = NULL;
 	this->texture = NULL;
 	this->actualAnimation = NULL;
@@ -12,7 +11,6 @@ GameObject::GameObject()
 
 GameObject::GameObject(const char * modelPath)
 {
-	this->frame = 0;
 	this->model = new Model(modelPath);
 	this->texture = NULL;
 	this->actualAnimation = NULL;
@@ -21,7 +19,6 @@ GameObject::GameObject(const char * modelPath)
 
 GameObject::GameObject(const char *modelPath, const char *texturePath)
 {
-	this->frame = 0;
 	this->model = new Model(modelPath);
 	this->texture = new Texture(texturePath);
 	this->model->SetTextureID(this->texture->GetID());
@@ -108,7 +105,7 @@ void GameObject::Draw(){
 		if (this->actualAnimation != NULL) {
 			for (idAnim = this->animations.begin(); idAnim != this->animations.end(); idAnim++) {
 				if (strcmp(actualAnimation, (*idAnim)->GetName()) == 0 ) {
-					(*idAnim)->Draw(this->frame);
+					(*idAnim)->Draw();
 					anim = true;
 					break;
 				}
@@ -123,9 +120,16 @@ void GameObject::Draw(){
 
 void GameObject::FixedUpdate(int frame)
 {
-	this->frame = frame;
 	for (id = this->objectsList.begin(); id != this->objectsList.end(); id++) {
 		(*id)->FixedUpdate(frame);
+	}
+	if (this->actualAnimation != NULL) {
+		for (idAnim = this->animations.begin(); idAnim != this->animations.end(); idAnim++) {
+			if (strcmp(actualAnimation, (*idAnim)->GetName()) == 0) {
+				(*idAnim)->FixedUpdate(frame);
+				break;
+			}
+		}
 	}
 }
 

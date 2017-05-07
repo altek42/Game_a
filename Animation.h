@@ -8,17 +8,23 @@
 
 class Animation
 {
+	static int frameToShow;
+
 	const char* name;
 	int lenght;
+	int frameOffset;
 	Model** models;
 
 public:
+	static void RestartAnimation();
+	
 	Animation(const char*,const char*,int, const char*, GLuint);
 	~Animation();
 
 	const char* GetName();
 
-	void Draw(int);
+	void Draw();
+	void FixedUpdate(int);
 };
 
 

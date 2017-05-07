@@ -1,9 +1,15 @@
 #include "Animation.h"
 
+int Animation::frameToShow = 0;
 
+void Animation::RestartAnimation()
+{
+	Animation::frameToShow = 0;
+}
 
 Animation::Animation(const char* AnimationName, const char* path, int length,const char *fileName, GLuint textureID)
 {
+	this->frameOffset = 61/ length;
 	this->name = AnimationName;
 	this->lenght = length;
 	this->models = new Model*[length];
@@ -49,12 +55,26 @@ const char * Animation::GetName()
 	return this->name;
 }
 
-void Animation::Draw(int frame)
+void Animation::Draw()
 {
-	float f = (float)frame / 61.0f;
-	int n = f*lenght;
-
 	
-	//std::cout << "N: " << n <<"Frame: "<<frame<< std::endl;
-	models[n]->Draw();
+	/*float f = (float)frame / 61.0f;
+	int n = f*lenght;*/
+
+	//std::cout << "N: " << frameToShow <<"Frame: "<<frame<< std::endl;
+	
+	models[Animation::frameToShow]->Draw();
+}
+
+void Animation::FixedUpdate(int frame)
+{
+	if (this->frameOffset < 0) {
+		Animation::frameToShow++;
+		this->frameOffset = 61 / this->lenght;
+
+		if (Animation::frameToShow >= this->lenght) {
+			Animation::frameToShow = 0;
+		}
+	}
+	this->frameOffset--;
 }

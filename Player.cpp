@@ -34,7 +34,7 @@ void Player::FixedUpdate(int frame) {
 			speed = speedJump;
 		}
 
-		this->SetAnimation("Idle");
+		this->SetAnimation("no_anim");
 		if (Keyboard::isPressed('d')) {
 			this->TranslatePosition(Vector3(speed, 0, 0));
 			this->SetAnimation("Run");
@@ -53,6 +53,7 @@ void Player::FixedUpdate(int frame) {
 		}
 
 		if (Keyboard::GetKey() == 'f') {
+			Animation::RestartAnimation();
 			this->SetAnimation("Attack");
 			this->delay = 60;
 		}
