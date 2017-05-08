@@ -77,7 +77,7 @@ void Player::FixedUpdate(int frame) {
 		if (Keyboard::GetKey() == 'f') {
 			Animation::RestartAnimation();
 			this->SetAnimation("Attack");
-			this->delay = 31;
+			this->delay = 41;
 		}
 
 	}
