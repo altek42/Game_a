@@ -18,9 +18,7 @@ class Game
 {
 private:
 	int frame;
-	GameObject *player;
 	GameObject *Root;
-	GameObject *ob, *obChild, *obChildChild;
 public:
 	Game();
 	~Game();

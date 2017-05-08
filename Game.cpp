@@ -11,40 +11,25 @@ Game::Game() {
 	GameObject *arena = new GameObject("Data\\Models\\arena.obj", "Data\\Texture\\arena.bmp");
 	arena->TranslatePosition(Vector3(0, -0.9, 0));
 
-	this->player = new Player("Data\\Models\\aSw.obj", "Data\\Texture\\aSw.bmp");
-	this->player->AddAnimation("Run", "Data\\Animations\\RunPlayer", 10, "run");
-	this->player->AddAnimation("Attack", "Data\\Animations\\AttackPlayer", 10, "attack",31);
-	this->player->TranslateRotation(Vector3(0, 180, 0));
+	GameObject *player;
+	player = new Player("Data\\Models\\aSw.obj", "Data\\Texture\\aSw.bmp");
+	player->AddAnimation("Run", "Data\\Animations\\RunPlayer", 10, "run");
+	player->AddAnimation("Attack", "Data\\Animations\\AttackPlayer", 10, "attack",31);
+	player->TranslateRotation(Vector3(0, 180, 0));
+
+	GameObject *enemy1;
+	enemy1 = new GameObject("Data\\Models\\enemy1.obj", "Data\\Texture\\enemy1.bmp");
 
 	this->Root = new GameObject();
-
-    this->ob = new GameObject("Data\\Models\\sphere.obj","Data\\Texture\\sphere2.bmp");
-	this->ob->TranslateRotation(Vector3(-25, 0, 0));
-
-	this->obChild = new GameObject("Data\\Models\\cube.obj", "Data\\Texture\\cube.bmp");
-    this->obChild->SetPosition(Vector3(2,0,0));
-    this->obChild->SetScale(Vector3(1,1,1)*0.5f);
-    
-	this->obChildChild = new GameObject("Data\\Models\\sphere.obj", "Data\\Texture\\sphere2.bmp");
-    this->obChildChild->SetPosition(Vector3(0,1.5f,0));
-    this->obChildChild->SetRotation(Vector3(-90,0,0));
-	this->obChildChild->SetScale(Vector3(1, 1, 1)*0.5f);
-
-
 	this->Root->AttachObject(player);
 	this->Root->AttachObject(arena);
-	this->Root->AttachObject(ob);
-    this->ob->AttachObject(obChild);
-    this->obChild->AttachObject(obChildChild);
+	this->Root->AttachObject(enemy1);
 
 	Camera::SetPosition(Vector3(3, 3, 3));
 	Camera::SetTarget(player);
 }
 
 Game::~Game() {
-    delete this->ob;
-    delete this->obChild;
-    delete this->obChildChild;
     delete this->Root;
 	Light::DestroyLights();
 }
@@ -52,8 +37,6 @@ Game::~Game() {
 void Game::Update() {
 	Light::Draw();
 	Camera::Draw();
-	obChild->TranslateRotation(Vector3(0,0.02,0));
-	obChildChild->TranslateRotation(Vector3(0.02, 0, 0));
     this->Root->Draw();
 }
 
