@@ -8,6 +8,7 @@
 #include "Model.h"
 #include "Texture.h"
 #include "Light.h"
+#include "Enemy.h"
 
 void drawCube(void);
 void drawSphere(void);

@@ -19,6 +19,8 @@ Game::Game() {
 
 	GameObject *enemy1;
 	enemy1 = new GameObject("Data\\Models\\enemy1.obj", "Data\\Texture\\enemy1.bmp");
+	enemy1->AddAnimation("Jump", "Data\\Animations\\JumpEnemy1", 9, "enemy1_jump", 31);
+	enemy1->SetAnimation("Jump");
 
 	this->Root = new GameObject();
 	this->Root->AttachObject(player);
