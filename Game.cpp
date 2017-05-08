@@ -8,24 +8,24 @@ Game::Game() {
 	float spe[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	Light::CreateLight(amb, dif, spe);
 
-	GameObject *arena = new GameObject("Models\\arena.obj", "Models\\arena.bmp");
+	GameObject *arena = new GameObject("Data\\Models\\arena.obj", "Data\\Texture\\arena.bmp");
 	arena->TranslatePosition(Vector3(0, -0.9, 0));
 
-	this->player = new Player("Models\\aSw.obj", "Models\\aSw.bmp");
-	this->player->AddAnimation("Run", "Models\\Animations\\RunPlayer", 10, "run");
-	this->player->AddAnimation("Attack", "Models\\Animations\\AttackPlayer", 10, "attack",31);
+	this->player = new Player("Data\\Models\\aSw.obj", "Data\\Texture\\aSw.bmp");
+	this->player->AddAnimation("Run", "Data\\Animations\\RunPlayer", 10, "run");
+	this->player->AddAnimation("Attack", "Data\\Animations\\AttackPlayer", 10, "attack",31);
 	this->player->TranslateRotation(Vector3(0, 180, 0));
 
 	this->Root = new GameObject();
 
-    this->ob = new GameObject("Models\\sphere.obj","Models\\sphere2.bmp");
+    this->ob = new GameObject("Data\\Models\\sphere.obj","Data\\Texture\\sphere2.bmp");
 	this->ob->TranslateRotation(Vector3(-25, 0, 0));
 
-	this->obChild = new GameObject("Models\\cube.obj", "Models\\cube.bmp");
+	this->obChild = new GameObject("Data\\Models\\cube.obj", "Data\\Texture\\cube.bmp");
     this->obChild->SetPosition(Vector3(2,0,0));
     this->obChild->SetScale(Vector3(1,1,1)*0.5f);
     
-	this->obChildChild = new GameObject("Models\\sphere.obj", "Models\\sphere2.bmp");
+	this->obChildChild = new GameObject("Data\\Models\\sphere.obj", "Data\\Texture\\sphere2.bmp");
     this->obChildChild->SetPosition(Vector3(0,1.5f,0));
     this->obChildChild->SetRotation(Vector3(-90,0,0));
 	this->obChildChild->SetScale(Vector3(1, 1, 1)*0.5f);
