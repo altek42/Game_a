@@ -71,6 +71,8 @@ void GameObject::TranslateScale(const Vector3& v){
     this->SetScale(vec);
 }
 
+
+
 void GameObject::AttachObject(GameObject*& o){
     this->objectsList.push_back(o);
 }

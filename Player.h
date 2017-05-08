@@ -16,6 +16,7 @@ public:
 	Player(const char*, const char*);
 	~Player();
 
+
 	void Draw();
 	void FixedUpdate(int);
 private:
