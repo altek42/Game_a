@@ -75,7 +75,7 @@ void Player::FixedUpdate(int frame) {
 		this->SetRotation(Vector3(0, angle, 0));
 
 		if (Keyboard::GetKey() == 'f') {
-			Animation::RestartAnimation();
+			this->ResetAnimationFrame();
 			this->SetAnimation("Attack");
 			this->delay = 41;
 		}

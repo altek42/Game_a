@@ -1,14 +1,9 @@
 #include "Animation.h"
 
-int Animation::frameToShow = 0;
 
-void Animation::RestartAnimation()
+Animation::Animation(const char* AnimationName, const char* path, int length,const char *fileName, GameObject* parent)
 {
-	Animation::frameToShow = 0;
-}
-
-Animation::Animation(const char* AnimationName, const char* path, int length,const char *fileName, GLuint textureID)
-{
+	this->parent = parent;
 	this->SetAnimatinTime(61);
 	this->name = AnimationName;
 	this->lenght = length;
@@ -41,7 +36,7 @@ Animation::Animation(const char* AnimationName, const char* path, int length,con
 		strcat(p, ".obj");
 
 		models[i] = new Model(p);
-		models[i]->SetTextureID(textureID);
+		models[i]->SetTextureID(parent->GetTextureID());
 	}
 	
 }
@@ -69,17 +64,17 @@ void Animation::Draw()
 
 	//std::cout << "N: " << frameToShow <<"Frame: "<<frame<< std::endl;
 	
-	models[Animation::frameToShow]->Draw();
+	models[this->parent->GetAnimationFrame()]->Draw();
 }
 
 void Animation::FixedUpdate(int frame)
 {
 	if (this->frameOffset < 0) {
-		Animation::frameToShow++;
+		this->parent->IncAnimationFrame();
 		this->frameOffset = this->calcFrameOffset();
 
-		if (Animation::frameToShow >= this->lenght) {
-			Animation::frameToShow = 0;
+		if (this->parent->GetAnimationFrame() >= this->lenght) {
+			this->parent->ResetAnimationFrame();
 		}
 	}
 	this->frameOffset--;

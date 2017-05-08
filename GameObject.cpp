@@ -55,6 +55,16 @@ Vector3* GameObject::GetPositionRef(){
     return this->position;
 }
 
+GLuint GameObject::GetTextureID()
+{
+	return this->texture->GetID();
+}
+
+int GameObject::GetAnimationFrame()
+{
+	return this->animationFrame;
+}
+
 void GameObject::TranslatePosition(const Vector3& v){
     Vector3 vec(this->position);
     vec = vec+v;
@@ -71,6 +81,16 @@ void GameObject::TranslateScale(const Vector3& v){
     this->SetScale(vec);
 }
 
+void GameObject::IncAnimationFrame()
+{
+	this->animationFrame++;
+}
+
+void GameObject::ResetAnimationFrame()
+{
+	this->animationFrame = 0;
+}
+
 
 
 void GameObject::AttachObject(GameObject*& o){
@@ -83,7 +103,7 @@ void GameObject::AddAnimation(const char* animationName, const char* path, int l
 }
 void GameObject::AddAnimation(const char* animationName, const char* path, int length, const char *fileName,int animatinTime)
 {
-	Animation* a = new Animation(animationName, path, length, fileName, this->texture->GetID());
+	Animation* a = new Animation(animationName, path, length, fileName, this);
 	a->SetAnimatinTime(animatinTime);
 	this->animations.push_back(a);
 }

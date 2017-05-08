@@ -8,6 +8,7 @@
 #include "Model.h"
 #include "Animation.h"
 
+class Animation;
 class GameObject
 {
 protected:
@@ -24,6 +25,7 @@ protected:
 	Model* model;
 	Texture* texture;
 	
+	int animationFrame;
 	const char* actualAnimation;
 public:
 	GameObject();
@@ -37,10 +39,15 @@ public:
 	void SetAnimation(const char*);
 
     Vector3* GetPositionRef();
+	GLuint GetTextureID();
+	int GetAnimationFrame();
 
     void TranslatePosition(const Vector3&);
     void TranslateRotation(const Vector3&);
     void TranslateScale(const Vector3&);
+
+	void IncAnimationFrame();
+	void ResetAnimationFrame();
 
 	void AttachObject(GameObject*&);
 	void AddAnimation(const char* animationName, const char* path, int length, const char *fileName);
