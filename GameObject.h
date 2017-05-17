@@ -43,6 +43,7 @@ public:
 	int GetAnimationFrame();
 	Model* GetModelRef();
 	void GetAllAnimations(std::vector<Animation*> * animList);
+	//void CopyAnimationsFrom(GameObject* gm);
 
     void TranslatePosition(const Vector3&);
     void TranslateRotation(const Vector3&);

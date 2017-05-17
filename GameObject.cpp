@@ -26,6 +26,8 @@ GameObject::GameObject(const char *modelPath, const char *texturePath)
 GameObject::GameObject(Model * m)
 {
 	this->model = m;
+	this->actualAnimation = NULL;
+	this->init();
 }
 
 GameObject::~GameObject()
@@ -82,6 +84,11 @@ void GameObject::GetAllAnimations(std::vector<Animation*>* animList)
 		animList->push_back(animations[i]);
 	}
 }
+
+//void GameObject::CopyAnimationsFrom(GameObject * gm)
+//{
+//	gm->GetAllAnimations(&this->animations);
+//}
 
 
 void GameObject::TranslatePosition(const Vector3& v){
