@@ -9,12 +9,10 @@
 
 class Texture
 {
-	GLuint textureID;
-
-public:
-	Texture(const char *);
-	GLuint GetID();
+	Texture();
 	~Texture();
+public:
+	static GLuint CreateTexture(const char * imagepath);
 };
 
 #endif

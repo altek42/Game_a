@@ -23,7 +23,6 @@ protected:
     Vector3* scale;
 
 	Model* model;
-	Texture* texture;
 	
 	int animationFrame;
 	const char* actualAnimation;

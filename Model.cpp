@@ -64,6 +64,11 @@ Model::~Model()
 {
 }
 
+GLuint Model::GetTextureID()
+{
+	return this->textureID;
+}
+
 void Model::SetTextureID(GLuint id)
 {
 	this->textureID = id;

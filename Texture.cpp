@@ -1,11 +1,21 @@
 #include "Texture.h"
 
 
-Texture::Texture(const char * imagepath)
+Texture::Texture()
 {
+	
+}
+
+Texture::~Texture()
+{
+}
+
+GLuint Texture::CreateTexture(const char * imagepath)
+{
+	GLuint textureID;
 	FILE * file = fopen(imagepath, "rb");
-	if (!file) { 
-		printf("Image could not be opened\n"); 
+	if (!file) {
+		printf("Image could not be opened\n");
 		exit(-2);
 	}
 
@@ -25,10 +35,10 @@ Texture::Texture(const char * imagepath)
 		exit(-2);
 	}
 	// Read ints from the byte array
-	dataPos =   *(int*)&(header[0x0A]);
+	dataPos = *(int*)&(header[0x0A]);
 	imageSize = *(int*)&(header[0x22]);
-	width =     *(int*)&(header[0x12]);
-	height =    *(int*)&(header[0x16]);
+	width = *(int*)&(header[0x12]);
+	height = *(int*)&(header[0x16]);
 	if (imageSize == 0)    imageSize = width*height * 3; // 3 : one byte for each Red, Green and Blue component
 	if (dataPos == 0)      dataPos = 54; // The BMP header is done that way
 	data = new unsigned char[imageSize];
@@ -43,14 +53,5 @@ Texture::Texture(const char * imagepath)
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-}
-
-GLuint Texture::GetID()
-{
 	return textureID;
-}
-
-
-Texture::~Texture()
-{
 }

@@ -21,6 +21,9 @@ private:
 public:
 	Model(const char *);
 	~Model();
+
+	GLuint GetTextureID();
+
 	void SetTextureID(GLuint);
 	void Draw();
 };

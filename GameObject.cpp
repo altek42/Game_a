@@ -4,7 +4,6 @@
 GameObject::GameObject()
 {
 	this->model = NULL;
-	this->texture = NULL;
 	this->actualAnimation = NULL;
 	this->init();
 }
@@ -12,7 +11,6 @@ GameObject::GameObject()
 GameObject::GameObject(const char * modelPath)
 {
 	this->model = new Model(modelPath);
-	this->texture = NULL;
 	this->actualAnimation = NULL;
 	this->init();
 }
@@ -20,8 +18,7 @@ GameObject::GameObject(const char * modelPath)
 GameObject::GameObject(const char *modelPath, const char *texturePath)
 {
 	this->model = new Model(modelPath);
-	this->texture = new Texture(texturePath);
-	this->model->SetTextureID(this->texture->GetID());
+	this->model->SetTextureID(Texture::CreateTexture(texturePath));
 	this->actualAnimation = NULL;
 	this->init();
 }
@@ -57,7 +54,7 @@ Vector3* GameObject::GetPositionRef(){
 
 GLuint GameObject::GetTextureID()
 {
-	return this->texture->GetID();
+	return this->model->GetTextureID();
 }
 
 int GameObject::GetAnimationFrame()
