@@ -30,6 +30,7 @@ public:
 	GameObject();
 	GameObject(const char*);
 	GameObject(const char*, const char*);
+	GameObject(Model*);
 	virtual ~GameObject();
 
     void SetPosition(const Vector3&);
@@ -40,6 +41,8 @@ public:
     Vector3* GetPositionRef();
 	GLuint GetTextureID();
 	int GetAnimationFrame();
+	Model* GetModelRef();
+	void GetAllAnimations(std::vector<Animation*> * animList);
 
     void TranslatePosition(const Vector3&);
     void TranslateRotation(const Vector3&);

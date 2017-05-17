@@ -23,11 +23,19 @@ GameObject::GameObject(const char *modelPath, const char *texturePath)
 	this->init();
 }
 
+GameObject::GameObject(Model * m)
+{
+	this->model = m;
+}
+
 GameObject::~GameObject()
 {
     delete this->position;
     delete this->rotation;
     delete this->scale;
+	for (id = this->objectsList.begin(); id != this->objectsList.end(); id++) {
+		delete (*id);
+	}
 }
 
 void GameObject::SetPosition(const Vector3& v){
@@ -61,6 +69,20 @@ int GameObject::GetAnimationFrame()
 {
 	return this->animationFrame;
 }
+
+Model * GameObject::GetModelRef()
+{
+	return this->model;
+}
+
+void GameObject::GetAllAnimations(std::vector<Animation*>* animList)
+{
+	for (int i = 0; i < animations.size(); i++)
+	{
+		animList->push_back(animations[i]);
+	}
+}
+
 
 void GameObject::TranslatePosition(const Vector3& v){
     Vector3 vec(this->position);

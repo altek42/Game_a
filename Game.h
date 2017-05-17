@@ -10,14 +10,12 @@
 #include "Light.h"
 #include "Enemy.h"
 
-void drawCube(void);
-void drawSphere(void);
-void drawCone(void);
-void drawNone(void);
-
 class Game
 {
 private:
+	std::vector <Model*> modelsToDelete;
+	std::vector <Animation*> animationsToDelete;
+
 	int frame;
 	GameObject *Root;
 public:

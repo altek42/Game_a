@@ -43,7 +43,12 @@ Animation::Animation(const char* AnimationName, const char* path, int length,con
 
 
 Animation::~Animation()
-{
+{	
+	for (int i = 0; i < lenght; i++)
+	{
+		delete models[i];
+	}
+	delete[] models;
 }
 
 const char * Animation::GetName()

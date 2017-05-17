@@ -9,18 +9,24 @@ Game::Game() {
 	Light::CreateLight(amb, dif, spe);
 
 	GameObject *arena = new GameObject("Data\\Models\\arena.obj", "Data\\Texture\\arena.bmp");
+	this->modelsToDelete.push_back(arena->GetModelRef());
 	arena->TranslatePosition(Vector3(0, -0.9, 0));
 
 	GameObject *player;
 	player = new Player("Data\\Models\\aSw.obj", "Data\\Texture\\aSw.bmp");
+	this->modelsToDelete.push_back(player->GetModelRef());
 	player->AddAnimation("Run", "Data\\Animations\\RunPlayer", 10, "run");
 	player->AddAnimation("Attack", "Data\\Animations\\AttackPlayer", 10, "attack",31);
 	player->TranslateRotation(Vector3(0, 180, 0));
+	player->GetAllAnimations(&this->animationsToDelete);
 
 	GameObject *enemy1;
 	enemy1 = new GameObject("Data\\Models\\enemy1.obj", "Data\\Texture\\enemy1.bmp");
+	this->modelsToDelete.push_back(enemy1->GetModelRef());
 	enemy1->AddAnimation("Jump", "Data\\Animations\\JumpEnemy1", 9, "enemy1_jump", 31);
 	enemy1->SetAnimation("Jump");
+	enemy1->GetAllAnimations(&this->animationsToDelete);
+
 
 	this->Root = new GameObject();
 	this->Root->AttachObject(player);
@@ -34,6 +40,14 @@ Game::Game() {
 Game::~Game() {
     delete this->Root;
 	Light::DestroyLights();
+	for (int i = 0; i < modelsToDelete.size(); i++)
+	{
+		delete modelsToDelete[i];
+	}
+	for (int i = 0; i < animationsToDelete.size(); i++)
+	{
+		delete animationsToDelete[i];
+	}
 }
 
 void Game::Update() {
@@ -51,20 +65,3 @@ void Game::UpdateOnTimer()
 	this->Root->FixedUpdate(frame);
 }
 
-void drawCube() {
-    glColor3f(0.0f, 0.0f, 1.0f);
-    glutWireCube(1);
-}
-void drawSphere() {
-    glColor3f(0.0f, 1.0f, 1.0f);
-    glutWireSphere(1, 12, 12);
-}
-
-void drawCone() {
-    glColor3f(1.0f, 1.0f, 0.0f);
-    glutWireCone(1.0f, 1.0f, 6, 6);
-}
-
-void drawNone(){
-
-}
