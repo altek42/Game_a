@@ -33,6 +33,8 @@ public:
     Vector3 operator* (float);    
     Vector3 operator/ (float);  
     friend std::ostream& operator<< (std::ostream&,const Vector3&);  
+
+	Vector3 DirectionTo(Vector3* target);
 private:
     
 };

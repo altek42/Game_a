@@ -21,14 +21,14 @@ Game::Game() {
 	player->GetAllAnimations(&this->animationsToDelete);
 
 	GameObject *enemy1;
-	enemy1 = new GameObject("Data\\Models\\enemy1.obj", "Data\\Texture\\enemy1.bmp");
+	enemy1 = new Enemy("Data\\Models\\enemy1.obj", "Data\\Texture\\enemy1.bmp",player);
 	this->modelsToDelete.push_back(enemy1->GetModelRef());
 	enemy1->AddAnimation("Jump", "Data\\Animations\\JumpEnemy1", 9, "enemy1_jump", 31);
 	enemy1->SetAnimation("Jump");
 	enemy1->GetAllAnimations(&this->animationsToDelete);
 
 	GameObject *enemy2;
-	enemy2 = new GameObject("Data\\Models\\enemy1.obj", "Data\\Texture\\enemy2.bmp");
+	enemy2 = new Enemy("Data\\Models\\enemy1.obj", "Data\\Texture\\enemy2.bmp",player);
 	this->modelsToDelete.push_back(enemy2->GetModelRef());
 	enemy2->AddAnimation("Jump", "Data\\Animations\\JumpEnemy1", 9, "enemy1_jump", 31);
 	enemy2->SetAnimation("Jump");
@@ -41,7 +41,7 @@ Game::Game() {
 	this->Root->AttachObject(player);
 	this->Root->AttachObject(arena);
 	this->Root->AttachObject(enemy1);
-	this->Root->AttachObject(enemy2);
+	//this->Root->AttachObject(enemy2);
 
 	Camera::SetPosition(Vector3(3, 3, 3));
 	Camera::SetTarget(player);

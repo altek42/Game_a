@@ -1,8 +1,11 @@
-#pragma once
+#ifndef ENEMY_CLASS_H
+#define ENEMY_CLASS_H
+#include <iostream>
 #include "GameObject.h"
 class Enemy :
 	public GameObject
 {
+	float speed;
 public:
 	GameObject * player;
 
@@ -10,5 +13,7 @@ public:
 	~Enemy();
 
 	void FixedUpdate(int);
+private:
 };
 
+#endif

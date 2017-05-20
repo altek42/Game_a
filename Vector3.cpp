@@ -114,6 +114,19 @@ Vector3 Vector3::operator/ (float c) {
                    );
 }
 
+Vector3 Vector3::DirectionTo(Vector3 * target)
+{
+	float x = (this->GetX() - target->GetX());
+	float y = (this->GetY() - target->GetY());
+	float z = (this->GetZ() - target->GetZ());
+
+	x = x == 0 ? 0.0f : x > 0 ? 1.0f : -1.0f;
+	y = y == 0 ? 0.0f : y > 0 ? 1.0f : -1.0f;
+	z = z == 0 ? 0.0f : z > 0 ? 1.0f : -1.0f;
+
+	return Vector3(x,y,z);
+}
+
 std::ostream& operator<<(std::ostream& out, const Vector3& v)  
 {  
     return out << "X: "<< v.x<<" Y: "<< v.y<<" Z: "<< v.z ;
