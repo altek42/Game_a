@@ -17,36 +17,9 @@ void Enemy::FixedUpdate(int frame) {
 	GameObject::FixedUpdate(frame);
 	Vector3 dir = this->position->DirectionTo(this->player->GetPositionRef());
 
-	float angle;
-	std::cout << dir << std::endl;
-	
-	if (dir.GetX()>0 && dir.GetZ()>0) {
-		angle = -135;
-	}
-	else if (dir.GetX()>0 && dir.GetZ()<0) {
-		angle = -45;
-	}
-	else if (dir.GetX()<0 && dir.GetZ()>0) {
-		angle = 135;
-	}
-	else if (dir.GetX()<0 && dir.GetZ()<0) {
-		angle = 45;
-	}
-	else if (dir.GetX()>0) {
-		angle = -90;
-	}
-	else if (dir.GetX()<0) {
-		angle = 90;
-	}
-	else if (dir.GetZ()>0) {
-		angle = 180;
-	}
-	else if (dir.GetZ()<0) {
-		angle = 0;
-	}
-	else {
-		angle = this->rotation->GetY();
-	}
+	float angle = dir.GetX() * 90 * -1 ;
+	angle = (dir.GetZ() > 0) ? -1* angle+180 : angle;
+	std::cout <<dir <<" A:"<<angle << std::endl;
 	this->SetRotation(Vector3(0, angle, 0));
 
 	this->TranslatePosition(dir * -speed);

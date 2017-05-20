@@ -41,7 +41,7 @@ Game::Game() {
 	this->Root->AttachObject(player);
 	this->Root->AttachObject(arena);
 	this->Root->AttachObject(enemy1);
-	//this->Root->AttachObject(enemy2);
+	this->Root->AttachObject(enemy2);
 
 	Camera::SetPosition(Vector3(3, 3, 3));
 	Camera::SetTarget(player);

@@ -2,6 +2,7 @@
 #define VECTOR3_CLASS_H
 #include <iostream>
 #include <math.h>
+#include <algorithm>
 class Vector3
 {
     float x,y,z;
