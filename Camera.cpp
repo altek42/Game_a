@@ -34,6 +34,12 @@ void Camera::SetUp(const Vector3 & v)
 	Up = new Vector3(v);
 }
 
+Vector3 Camera::GetPosition()
+{
+	Vector3* a = Target->GetPositionRef();
+	return Vector3(Position) + Vector3(a);
+}
+
 void Camera::TranslatePosition(const Vector3 & v)
 {
 	Vector3 vec(Position);

@@ -20,6 +20,19 @@ Game::Game() {
 	player->TranslateRotation(Vector3(0, 180, 0));
 	player->GetAllAnimations(&this->animationsToDelete);
 
+	HealthBar *playerBar;
+	GLuint tex[4];
+	tex[0] = Texture::CreateTexture("Data\\Texture\\healthBar1.bmp");
+	tex[1] = Texture::CreateTexture("Data\\Texture\\healthBar2.bmp");
+	tex[2] = Texture::CreateTexture("Data\\Texture\\healthBar3.bmp");
+	tex[3] = Texture::CreateTexture("Data\\Texture\\healthBar4.bmp");
+	playerBar = new HealthBar("Data\\Models\\healthBar.obj", 4, tex);
+	this->modelsToDelete.push_back(playerBar->GetModelRef());
+	playerBar->SetScale(Vector3(0.03f));
+	playerBar->SetRotation(Vector3(0, 45, 0));
+	playerBar->SetLocalPos(Vector3(0, 0.08f, 0));
+	GameObject *playerBarGO = playerBar;
+
 	GameObject *enemy1;
 	enemy1 = new Enemy("Data\\Models\\enemy1.obj", "Data\\Texture\\enemy1.bmp",player);
 	this->modelsToDelete.push_back(enemy1->GetModelRef());
@@ -37,7 +50,9 @@ Game::Game() {
 	enemy2->TranslatePosition(Vector3(3.0f, 0.0f, 3.0f));
 
 
+
 	this->Root = new GameObject();
+	this->Root->AttachObject(playerBarGO);
 	this->Root->AttachObject(player);
 	this->Root->AttachObject(arena);
 	this->Root->AttachObject(enemy1);

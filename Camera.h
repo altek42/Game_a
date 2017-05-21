@@ -13,6 +13,8 @@ public:
 	static void SetTarget(GameObject*);
 	static void SetUp(const Vector3&);
 
+	static Vector3 GetPosition();
+
 	static void TranslatePosition(const Vector3&);
 
     static void Draw();

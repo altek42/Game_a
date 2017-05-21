@@ -9,6 +9,7 @@
 #include "Texture.h"
 #include "Light.h"
 #include "Enemy.h"
+#include "HealthBar.h"
 
 class Game
 {

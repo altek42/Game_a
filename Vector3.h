@@ -7,7 +7,8 @@ class Vector3
 {
     float x,y,z;
 public:
-    Vector3(float,float,float);
+	Vector3(float);
+	Vector3(float,float,float);
     Vector3(const Vector3&);
     Vector3(Vector3*&);
     Vector3();
