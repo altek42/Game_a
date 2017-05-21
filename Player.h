@@ -10,7 +10,6 @@ class Player :
 private:
 	float speedWalk;
 	float speedJump;
-	//bool isAction;
 	int delay;
 public:
 	Player(const char*, const char*);
