@@ -1,18 +1,20 @@
 #ifndef COLLIDER_CLASS_H
 #define COLLIDER_CLASS_H
 
+#include <vector>
 #include "Vector3.h"
 #include "GameObject.h"
 class GameObject;
 class Collider
 {
+	static std::vector <Collider*> colliderList;
+
 	float radius;
 	Vector3* position;
 	GameObject* parent;
 
-	void(*OnCollision)(GameObject* object);
 public:
-	Collider(float radius, GameObject* parent, void(*func)(GameObject* object));
+	Collider(float radius, GameObject* parent);
 	~Collider();
 
 	float GetRadius();
@@ -20,6 +22,8 @@ public:
 	GameObject* GetParent();
 
 	void CheckCollisionWith(Collider* c);
+	
+	static void CheckCollisions();
 };
 
 #endif

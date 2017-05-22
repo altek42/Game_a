@@ -7,7 +7,7 @@ Player::Player(const char *modelPath, const char *texturePath) : GameObject(mode
 	this->speedWalk = 0.0625;
 	this->speedJump = 0.125;
 
-	this->colliderBody = new Collider(2.0f, this, (&OnCollision));
+	this->colliderBody = new Collider(2.0f, this);
 }
 
 
@@ -86,4 +86,5 @@ void Player::FixedUpdate(int frame) {
 
 void Player::OnCollision(GameObject * object)
 {
+
 }

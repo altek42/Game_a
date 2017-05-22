@@ -58,7 +58,9 @@ public:
 	void AddAnimation(const char* animationName, const char* path, int length, const char *fileName,int animationTime);
     virtual void Draw();
 	virtual void FixedUpdate(int);
+	virtual void OnCollision(GameObject* object);
 private:
+
 	void init();
 };
 

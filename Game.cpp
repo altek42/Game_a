@@ -88,5 +88,6 @@ void Game::UpdateOnTimer()
 		frame = 0;
 	}
 	this->Root->FixedUpdate(frame);
+	Collider::CheckCollisions();
 }
 

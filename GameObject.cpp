@@ -186,6 +186,10 @@ void GameObject::FixedUpdate(int frame)
 	}
 }
 
+void GameObject::OnCollision(GameObject * object)
+{
+}
+
 void GameObject::init()
 {
 	this->position = new Vector3();

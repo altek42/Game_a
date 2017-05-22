@@ -1,12 +1,13 @@
 #include "Collider.h"
 
+std::vector <Collider*> Collider::colliderList;
 
 
-Collider::Collider(float radius, GameObject * parent, void(*func)(GameObject *object))
+Collider::Collider(float radius, GameObject * parent)
 {
 	this->radius = radius;
 	this->parent = parent;
-	this->OnCollision = func;
+	colliderList.push_back(this);
 }
 
 Collider::~Collider()
@@ -30,11 +31,23 @@ GameObject * Collider::GetParent()
 
 void Collider::CheckCollisionWith(Collider * c)
 {
-	if (this->OnCollision != NULL) {
-		Vector3 v = Vector3(this->position) - c->GetPosition();
-		float distance = v.GetLenght();
-		if (distance <= (this->radius + c->radius) ){
-			OnCollision(c->parent);
+	Vector3 v = Vector3(this->position) - c->GetPosition();
+	float distance = v.GetLenght();
+	if (distance <= (this->radius + c->radius) ){
+		this->parent->OnCollision(c->parent);
+	}
+}
+
+void Collider::CheckCollisions()
+{
+	for (size_t i = 0; i < colliderList.size(); i++)
+	{
+		for (size_t j = 0; j < colliderList.size(); j++)
+		{
+			if (i == j) {
+				continue;
+			}
+			colliderList[i]->CheckCollisionWith(colliderList[j]);
 		}
 	}
 }
