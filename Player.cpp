@@ -1,12 +1,13 @@
 #include "Player.h"
 
 
-
 Player::Player(const char *modelPath, const char *texturePath) : GameObject(modelPath, texturePath)
 {
 	delay = 0;
 	this->speedWalk = 0.0625;
 	this->speedJump = 0.125;
+
+	this->colliderBody = new Collider(2.0f, this, (&OnCollision));
 }
 
 
@@ -81,4 +82,8 @@ void Player::FixedUpdate(int frame) {
 		}
 
 	}
+}
+
+void Player::OnCollision(GameObject * object)
+{
 }
