@@ -7,6 +7,7 @@
 #include "Texture.h"
 #include "Model.h"
 #include "Animation.h"
+#include "Collider.h"
 
 class Animation;
 class GameObject

@@ -19,7 +19,6 @@ void Enemy::FixedUpdate(int frame) {
 
 	float angle = dir.GetX() * 90 * -1 ;
 	angle = (dir.GetZ() > 0) ? -1* angle+180 : angle;
-	std::cout <<dir <<" A:"<<angle << std::endl;
 	this->SetRotation(Vector3(0, angle, 0));
 
 	this->TranslatePosition(dir * -speed);
