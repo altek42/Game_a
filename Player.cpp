@@ -7,12 +7,14 @@ Player::Player(const char *modelPath, const char *texturePath) : GameObject(mode
 	this->speedWalk = 0.0625;
 	this->speedJump = 0.125;
 
-	this->colliderBody = new Collider(2.0f, this);
+	this->colliderBody = new Collider(0.2f, this);
 }
 
 
 Player::~Player()
 {
+	delete this->colliderBody;
+	delete this->colliderSword;
 }
 
 void Player::Draw()

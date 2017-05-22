@@ -1,24 +1,25 @@
 #include "GameObject.h"
 
 
-GameObject::GameObject()
+GameObject::GameObject() : GameObject( NULL , NULL)
 {
-	this->model = NULL;
-	this->actualAnimation = NULL;
-	this->init();
 }
 
-GameObject::GameObject(const char * modelPath)
+GameObject::GameObject(const char * modelPath) : GameObject(modelPath,NULL)
 {
-	this->model = new Model(modelPath);
-	this->actualAnimation = NULL;
-	this->init();
 }
 
 GameObject::GameObject(const char *modelPath, const char *texturePath)
 {
-	this->model = new Model(modelPath);
-	this->model->SetTextureID(Texture::CreateTexture(texturePath));
+	if (modelPath == NULL) {
+		this->model = NULL;
+	}
+	else {
+		this->model = new Model(modelPath);
+		if (texturePath != NULL) {
+			this->model->SetTextureID(Texture::CreateTexture(texturePath));
+		}
+	}
 	this->actualAnimation = NULL;
 	this->init();
 }
@@ -26,7 +27,6 @@ GameObject::GameObject(const char *modelPath, const char *texturePath)
 GameObject::GameObject(Model * m)
 {
 	this->model = m;
-	this->actualAnimation = NULL;
 	this->init();
 }
 
@@ -205,4 +205,6 @@ void GameObject::init()
 	this->position = new Vector3();
 	this->rotation = new Vector3();
 	this->scale = new Vector3(1, 1, 1);
+	this->actualAnimation = NULL;
+	this->name = "[Object]";
 }

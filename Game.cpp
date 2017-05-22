@@ -19,6 +19,7 @@ Game::Game() {
 	player->AddAnimation("Attack", "Data\\Animations\\AttackPlayer", 10, "attack",31);
 	player->TranslateRotation(Vector3(0, 180, 0));
 	player->GetAllAnimations(&this->animationsToDelete);
+	player->SetName("Player");
 
 	HealthBar *playerBar;
 	GLuint tex[4];
@@ -32,7 +33,6 @@ Game::Game() {
 	playerBar->SetRotation(Vector3(0, 45, 0));
 	playerBar->SetLocalPos(Vector3(0, 0.08f, 0));
 	GameObject *playerBarGO = playerBar;
-	playerBar->SetName("Player");
 
 	GameObject *enemy1;
 	enemy1 = new Enemy("Data\\Models\\enemy1.obj", "Data\\Texture\\enemy1.bmp",player);
@@ -40,7 +40,7 @@ Game::Game() {
 	enemy1->AddAnimation("Jump", "Data\\Animations\\JumpEnemy1", 9, "enemy1_jump", 31);
 	enemy1->SetAnimation("Jump");
 	enemy1->GetAllAnimations(&this->animationsToDelete);
-	enemy1->SetName("Enemy{1}");
+	enemy1->SetName("Zielony{1}");
 
 	GameObject *enemy2;
 	enemy2 = new Enemy("Data\\Models\\enemy1.obj", "Data\\Texture\\enemy2.bmp",player);
@@ -50,7 +50,7 @@ Game::Game() {
 	enemy2->GetAllAnimations(&this->animationsToDelete);
 	enemy2->TranslateRotation(Vector3(0, 45, 0));
 	enemy2->TranslatePosition(Vector3(3.0f, 0.0f, 3.0f));
-	enemy2->SetName("Enemy{2}");
+	enemy2->SetName("Niebieski{2}");
 
 
 	this->Root = new GameObject();
