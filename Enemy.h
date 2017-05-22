@@ -8,6 +8,7 @@ class Enemy :
 	float speed;
 public:
 	GameObject * player;
+	Collider* colliderBody;
 
 	Enemy(const char*, const char*,GameObject*);
 	~Enemy();

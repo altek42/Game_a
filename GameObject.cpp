@@ -58,6 +58,11 @@ void GameObject::SetAnimation(const char * name)
 	this->actualAnimation = name;
 }
 
+void GameObject::SetName(const char * n)
+{
+	this->name = n;
+}
+
 Vector3* GameObject::GetPositionRef(){
     return this->position;
 }
@@ -83,6 +88,11 @@ void GameObject::GetAllAnimations(std::vector<Animation*>* animList)
 	{
 		animList->push_back(animations[i]);
 	}
+}
+
+const char * GameObject::GetName()
+{
+	return this->name;
 }
 
 //void GameObject::CopyAnimationsFrom(GameObject * gm)

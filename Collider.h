@@ -21,6 +21,8 @@ public:
 	Vector3 GetPosition();
 	GameObject* GetParent();
 
+	void SetPosition(Vector3 v);
+
 	void CheckCollisionWith(Collider* c);
 	
 	static void CheckCollisions();

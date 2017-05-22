@@ -6,6 +6,8 @@ Enemy::Enemy(const char*modelPath, const char*texturePath, GameObject* player) :
 {
 	this->player = player;
 	this->speed = 0.02;
+
+	this->colliderBody = new Collider(1.0f, this);
 }
 
 

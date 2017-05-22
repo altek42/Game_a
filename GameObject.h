@@ -13,6 +13,8 @@ class Animation;
 class GameObject
 {
 protected:
+	const char* name="OBJECT";
+
     std::vector <GameObject*> objectsList;
     std::vector <GameObject*>::iterator id;
 
@@ -38,13 +40,14 @@ public:
     void SetRotation(const Vector3&);
     void SetScale(const Vector3&);
 	void SetAnimation(const char*);
+	void SetName(const char*);
 
     Vector3* GetPositionRef();
 	GLuint GetTextureID();
 	int GetAnimationFrame();
 	Model* GetModelRef();
 	void GetAllAnimations(std::vector<Animation*> * animList);
-	//void CopyAnimationsFrom(GameObject* gm);
+	const char* GetName();
 
     void TranslatePosition(const Vector3&);
     void TranslateRotation(const Vector3&);

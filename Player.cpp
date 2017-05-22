@@ -86,5 +86,5 @@ void Player::FixedUpdate(int frame) {
 
 void Player::OnCollision(GameObject * object)
 {
-
+	std::cout << "Collision " << this->GetName() << " : " << object->GetName() << std::endl;
 }
