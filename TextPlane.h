@@ -3,6 +3,7 @@
 
 #include "GameObject.h"
 #include "Camera.h"
+#include "Keyboard.h"
 
 class TextPlane :
 	public GameObject

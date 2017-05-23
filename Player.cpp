@@ -7,7 +7,9 @@ Player::Player(const char *modelPath, const char *texturePath, HealthBar* health
 	this->speedWalk = 0.0625;
 	this->speedJump = 0.125;
 
-	this->colliderBody = new Collider(0.2f, this);
+	this->colliderBody = new Collider(0.2f, this, PLAYER_COLLIDER);
+	this->colliderSword = new Collider(0.4f, this, SWORD_COLLIDER);
+
 	this->specialVector = new Vector3();
 	this->healthBar = healthBar;
 	this->specialAction = ACTION_0;
@@ -30,6 +32,8 @@ void Player::Draw()
 
 void Player::FixedUpdate(int frame) {
 	GameObject::FixedUpdate(frame);
+
+	this->updateSwordCollider();
 
 	float speed = speedWalk;
 	float angle;
@@ -57,18 +61,22 @@ void Player::FixedUpdate(int frame) {
 
 		this->SetAnimation("Run");
 		if (Keyboard::isPressed('d') && Keyboard::isPressed('s')) {
+			speed = speed * DIAG_SPEED_MODIFIER;
 			angle = -135;
 			this->TranslatePosition(Vector3(speed, 0, speed));
 		}
 		else if(Keyboard::isPressed('d') && Keyboard::isPressed('w')){
+			speed = speed * DIAG_SPEED_MODIFIER;
 			angle = -45;
 			this->TranslatePosition(Vector3(speed, 0, -speed));
 		}
 		else if (Keyboard::isPressed('a') && Keyboard::isPressed('s')) {
+			speed = speed * DIAG_SPEED_MODIFIER;
 			angle = 135;
 			this->TranslatePosition(Vector3(-speed, 0, speed));
 		}
 		else if (Keyboard::isPressed('a') && Keyboard::isPressed('w')) {
+			speed = speed * DIAG_SPEED_MODIFIER;
 			angle = 45;
 			this->TranslatePosition(Vector3(-speed, 0, -speed));
 		}
@@ -108,10 +116,13 @@ int Player::GetClassID()
 	return ID_PLAYER_CLASS;
 }
 
-void Player::OnCollision(GameObject * object)
+void Player::OnCollision(int senderID, GameObject * object)
 {
 	if (object->GetClassID() == ID_ENEMY_CLASS) {
-		this->GettingHitBy(object);
+		if (senderID == PLAYER_COLLIDER) {
+			this->GettingHitBy(object);
+		}
+
 	}
 }
 
@@ -119,6 +130,52 @@ void Player::SetSpecialVector(Vector3 v)
 {
 	delete this->specialVector;
 	this->specialVector = new Vector3(v);
+}
+
+void Player::updateSwordCollider()
+{
+	float angle = this->rotation->GetY();
+	float x, z;
+	float r = 0.3f;
+
+	if (angle < 1 && angle > -1) {
+		x = 0;
+		z = -r;
+	}
+	else if (angle < 181 && angle > 179) {
+		x = 0;
+		z = r;
+	}
+	else if (angle < 91 && angle > 89) {
+		x = -r;
+		z = 0;
+	}
+	else if (angle > -91 && angle < -89) {
+		x = r;
+		z = 0;
+	}
+
+	else if (angle > -136 && angle < -134) {
+		x = r;
+		z = r;
+	}
+	else if (angle > -46 && angle < -44) {
+		x = r;
+		z = -r;
+	}
+	else if (angle < 136 && angle > 134) {
+		x = -r;
+		z = r;
+	}
+	else if (angle < 46 && angle > 44) {
+		x = -r;
+		z = -r;
+	}
+	else {
+		x = 1000.0f;
+		z = 1000.0f;
+	}
+	this->colliderSword->SetPosition(Vector3(x,0.0f,z));
 }
 
 void Player::GettingHitBy(GameObject * object)

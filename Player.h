@@ -7,6 +7,8 @@
 #include "HealthBar.h"
 #include "Game.h"
 
+#define DIAG_SPEED_MODIFIER 0.81f
+
 #define ACTION_0 0
 #define ACTION_GETTING_HIT 1
 
@@ -34,9 +36,10 @@ public:
 
 	int GetClassID();
 private:
-	void OnCollision(GameObject* object);
+	void OnCollision(int senderID, GameObject* object);
 	void SetSpecialVector(Vector3 v);
 
+	void updateSwordCollider();
 	void GettingHitBy(GameObject* object);
 };
 

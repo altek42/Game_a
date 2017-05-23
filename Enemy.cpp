@@ -50,7 +50,7 @@ int Enemy::GetClassID()
 	return ID_ENEMY_CLASS;
 }
 
-void Enemy::OnCollision(GameObject * object)
+void Enemy::OnCollision(int senderID, GameObject * object)
 {
 	if (object->GetClassID() == ID_ENEMY_CLASS) {
 		Vector3 dir = this->position->DirectionTo(object->GetPositionRef());

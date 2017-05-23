@@ -95,12 +95,6 @@ const char * GameObject::GetName()
 	return this->name;
 }
 
-//void GameObject::CopyAnimationsFrom(GameObject * gm)
-//{
-//	gm->GetAllAnimations(&this->animations);
-//}
-
-
 void GameObject::TranslatePosition(const Vector3& v){
     Vector3 vec(this->position);
     vec = vec+v;
@@ -196,7 +190,7 @@ void GameObject::FixedUpdate(int frame)
 	}
 }
 
-void GameObject::OnCollision(GameObject * object)
+void GameObject::OnCollision(int senderID, GameObject * object)
 {
 }
 

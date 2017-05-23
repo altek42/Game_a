@@ -22,5 +22,7 @@ void TextPlane::Draw()
 
 void TextPlane::FixedUpdate(int frame)
 {
-
+	if (Keyboard::isPressed('r')) {
+		//restart
+	}
 }

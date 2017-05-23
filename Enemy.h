@@ -27,7 +27,7 @@ public:
 
 	int GetClassID();
 private:
-	void OnCollision(GameObject* object);
+	void OnCollision(int senderID, GameObject* object);
 	void SetSpecialVector(Vector3 v);
 
 };
