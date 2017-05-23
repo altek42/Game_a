@@ -200,6 +200,11 @@ void GameObject::OnCollision(GameObject * object)
 {
 }
 
+int GameObject::GetClassID()
+{
+	return ID_GAMEOBJECT_CLASS;
+}
+
 void GameObject::init()
 {
 	this->position = new Vector3();

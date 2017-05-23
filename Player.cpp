@@ -8,6 +8,7 @@ Player::Player(const char *modelPath, const char *texturePath) : GameObject(mode
 	this->speedJump = 0.125;
 
 	this->colliderBody = new Collider(0.2f, this);
+	this->specialVector = new Vector3();
 }
 
 
@@ -15,6 +16,7 @@ Player::~Player()
 {
 	delete this->colliderBody;
 	delete this->colliderSword;
+	delete this->specialVector;
 }
 
 void Player::Draw()
@@ -30,10 +32,19 @@ void Player::FixedUpdate(int frame) {
 	float speed = speedWalk;
 	float angle;
 
+	if (this->specialAction != ACTION_0) {
+		if (this->specialAction == ACTION_GETTING_HIT) {
+			Vector3 dir = Vector3(this->specialVector);
+			this->TranslatePosition(dir*speed);
+		}
+	}
+
 	if (this->delay > 0) {
 		this->delay--;
 	}
 	else {
+		this->specialAction = ACTION_0;
+
 		if (Keyboard::GetKey()==KEY_SPACE) {
 			speed = speedJump;
 		}
@@ -86,7 +97,23 @@ void Player::FixedUpdate(int frame) {
 	}
 }
 
+int Player::GetClassID()
+{
+	return ID_PLAYER_CLASS;
+}
+
 void Player::OnCollision(GameObject * object)
 {
-	std::cout << "Collision " << this->GetName() << " : " << object->GetName() << std::endl;
+	if (object->GetClassID() == ID_ENEMY_CLASS) {
+		Vector3 dir = this->position->DirectionTo(object->GetPositionRef());
+		this->SetSpecialVector(dir);
+		this->specialAction = ACTION_GETTING_HIT;
+		this->delay = 12;
+	}
+}
+
+void Player::SetSpecialVector(Vector3 v)
+{
+	delete this->specialVector;
+	this->specialVector = new Vector3(v);
 }

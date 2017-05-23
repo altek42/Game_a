@@ -52,7 +52,8 @@ void Collider::CheckCollisionWith(Collider * c)
 	if (distance < r) {
 		this->parent->OnCollision(c->parent);
 		std::cout << "Distance:" << distance << std::ends;
-		std::cout << "\tRad:" << r << std::endl;
+		std::cout << "\tRad:" << r << std::ends;
+		std::cout << "\tName:" << this->parent->GetName() << std::endl;
 	}
 }
 

@@ -2,10 +2,20 @@
 #define ENEMY_CLASS_H
 #include <iostream>
 #include "GameObject.h"
+
+
+#define ACTION_E_0 0
+#define ACTION_E_GETTING_HIT 1
+#define ACTION_E_COLLISION_WITH_E 2
+
 class Enemy :
 	public GameObject
 {
 	float speed;
+	int delay;
+	int specialAction;
+	Vector3* specialVector;
+
 public:
 	GameObject * player;
 	Collider* colliderBody;
@@ -14,7 +24,12 @@ public:
 	~Enemy();
 
 	void FixedUpdate(int);
+
+	int GetClassID();
 private:
+	void OnCollision(GameObject* object);
+	void SetSpecialVector(Vector3 v);
+
 };
 
 #endif

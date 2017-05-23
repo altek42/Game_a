@@ -9,6 +9,10 @@
 #include "Animation.h"
 #include "Collider.h"
 
+#define ID_GAMEOBJECT_CLASS 1
+#define ID_ENEMY_CLASS 2
+#define ID_PLAYER_CLASS 3
+
 class Animation;
 class GameObject
 {
@@ -62,6 +66,8 @@ public:
     virtual void Draw();
 	virtual void FixedUpdate(int);
 	virtual void OnCollision(GameObject* object);
+
+	virtual int GetClassID();
 private:
 
 	void init();
