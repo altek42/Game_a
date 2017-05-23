@@ -19,6 +19,7 @@ public:
 
 	float GetRadius();
 	Vector3 GetPosition();
+	Vector3 GetPosition2();
 	GameObject* GetParent();
 
 	void SetPosition(Vector3 v);

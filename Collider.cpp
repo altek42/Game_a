@@ -8,7 +8,7 @@ Collider::Collider(float radius, GameObject * parent)
 	this->radius = radius;
 	this->parent = parent;
 	this->position = new Vector3();
-	colliderList.push_back(this);
+	Collider::colliderList.push_back(this);
 }
 
 Collider::~Collider()
@@ -19,6 +19,12 @@ Collider::~Collider()
 Vector3 Collider::GetPosition()
 {
 	return Vector3(this->position);
+}
+
+Vector3 Collider::GetPosition2()
+{
+	Vector3* pv = this->parent->GetPositionRef();
+	return Vector3(this->position) + Vector3(pv);
 }
 
 float Collider::GetRadius()
@@ -39,11 +45,14 @@ void Collider::SetPosition(Vector3 v)
 
 void Collider::CheckCollisionWith(Collider * c)
 {
-	Vector3* pv = this->parent->GetPositionRef();
-	Vector3 v = (Vector3(this->position) + Vector3(pv) ) - c->GetPosition();
+	Vector3 v = (this->GetPosition2() ) - c->GetPosition2();
+	
 	float distance = v.GetLenght();
-	if (distance <= (this->radius + c->radius)) {
+	float r = this->radius + c->radius;
+	if (distance < r) {
 		this->parent->OnCollision(c->parent);
+		std::cout << "Distance:" << distance << std::ends;
+		std::cout << "\tRad:" << r << std::endl;
 	}
 }
 

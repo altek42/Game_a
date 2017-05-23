@@ -40,6 +40,7 @@ Game::Game() {
 	enemy1->AddAnimation("Jump", "Data\\Animations\\JumpEnemy1", 9, "enemy1_jump", 31);
 	enemy1->SetAnimation("Jump");
 	enemy1->GetAllAnimations(&this->animationsToDelete);
+	enemy1->TranslatePosition(Vector3(3.0f, 0.0f, 0.0f));
 	enemy1->SetName("Zielony{1}");
 
 	GameObject *enemy2;
@@ -60,7 +61,7 @@ Game::Game() {
 	this->Root->AttachObject(enemy1);
 	this->Root->AttachObject(enemy2);
 
-	Camera::SetPosition(Vector3(3, 3, 3));
+	Camera::SetPosition(Vector3(3));
 	Camera::SetTarget(player);
 }
 
@@ -81,6 +82,7 @@ void Game::Update() {
 	Light::Draw();
 	Camera::Draw();
     this->Root->Draw();
+	
 }
 
 void Game::UpdateOnTimer()
