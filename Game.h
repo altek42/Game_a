@@ -10,6 +10,7 @@
 #include "Light.h"
 #include "Enemy.h"
 #include "HealthBar.h"
+#include "TextPlane.h"
 
 class Game
 {
@@ -21,6 +22,7 @@ private:
 
 	int frame;
 	GameObject *Root;
+	TextPlane* TextGameOver;
 public:
 	Game();
 	~Game();
