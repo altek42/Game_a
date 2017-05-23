@@ -4,6 +4,8 @@
 #include "GameObject.h"
 #include "Keyboard.h"
 #include "Collider.h"
+#include "HealthBar.h"
+#include "Game.h"
 
 #define ACTION_0 0
 #define ACTION_GETTING_HIT 1
@@ -21,8 +23,9 @@ private:
 	Collider* colliderBody;
 	Collider* colliderSword;
 
+	HealthBar* healthBar;
 public:
-	Player(const char*, const char*);
+	Player(const char* mp, const char* tp, HealthBar* h);
 	~Player();
 
 
@@ -33,6 +36,8 @@ public:
 private:
 	void OnCollision(GameObject* object);
 	void SetSpecialVector(Vector3 v);
+
+	void GettingHitBy(GameObject* object);
 };
 
 #endif

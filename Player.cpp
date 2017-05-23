@@ -1,7 +1,7 @@
 #include "Player.h"
 
 
-Player::Player(const char *modelPath, const char *texturePath) : GameObject(modelPath, texturePath)
+Player::Player(const char *modelPath, const char *texturePath, HealthBar* healthBar) : GameObject(modelPath, texturePath)
 {
 	delay = 0;
 	this->speedWalk = 0.0625;
@@ -9,6 +9,8 @@ Player::Player(const char *modelPath, const char *texturePath) : GameObject(mode
 
 	this->colliderBody = new Collider(0.2f, this);
 	this->specialVector = new Vector3();
+	this->healthBar = healthBar;
+	this->specialAction = ACTION_0;
 }
 
 
@@ -31,6 +33,10 @@ void Player::FixedUpdate(int frame) {
 
 	float speed = speedWalk;
 	float angle;
+
+	if (this->healthBar->GetHealth() <= 0) {
+		Game::GameOver();
+	}
 
 	if (this->specialAction != ACTION_0) {
 		if (this->specialAction == ACTION_GETTING_HIT) {
@@ -105,10 +111,7 @@ int Player::GetClassID()
 void Player::OnCollision(GameObject * object)
 {
 	if (object->GetClassID() == ID_ENEMY_CLASS) {
-		Vector3 dir = this->position->DirectionTo(object->GetPositionRef());
-		this->SetSpecialVector(dir);
-		this->specialAction = ACTION_GETTING_HIT;
-		this->delay = 12;
+		this->GettingHitBy(object);
 	}
 }
 
@@ -116,4 +119,13 @@ void Player::SetSpecialVector(Vector3 v)
 {
 	delete this->specialVector;
 	this->specialVector = new Vector3(v);
+}
+
+void Player::GettingHitBy(GameObject * object)
+{
+	Vector3 dir = this->position->DirectionTo(object->GetPositionRef());
+	this->SetSpecialVector(dir);
+	this->specialAction = ACTION_GETTING_HIT;
+	this->delay = 12;
+	this->healthBar->Decrease();
 }

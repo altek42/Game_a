@@ -9,6 +9,7 @@ Enemy::Enemy(const char*modelPath, const char*texturePath, GameObject* player) :
 
 	this->colliderBody = new Collider(0.2f, this);
 	this->specialVector = new Vector3();
+	this->specialAction = ACTION_E_0;
 }
 
 

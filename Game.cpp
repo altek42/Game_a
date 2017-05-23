@@ -1,5 +1,8 @@
 #include "Game.h"
 
+bool Game::gameOver=false;
+
+
 Game::Game() {
 	this->frame = 0;
 
@@ -11,15 +14,6 @@ Game::Game() {
 	GameObject *arena = new GameObject("Data\\Models\\arena.obj", "Data\\Texture\\arena.bmp");
 	this->modelsToDelete.push_back(arena->GetModelRef());
 	arena->TranslatePosition(Vector3(0, -0.9, 0));
-
-	GameObject *player;
-	player = new Player("Data\\Models\\aSw.obj", "Data\\Texture\\aSw.bmp");
-	this->modelsToDelete.push_back(player->GetModelRef());
-	player->AddAnimation("Run", "Data\\Animations\\RunPlayer", 10, "run");
-	player->AddAnimation("Attack", "Data\\Animations\\AttackPlayer", 10, "attack",31);
-	player->TranslateRotation(Vector3(0, 180, 0));
-	player->GetAllAnimations(&this->animationsToDelete);
-	player->SetName("Player");
 
 	HealthBar *playerBar;
 	GLuint tex[4];
@@ -33,6 +27,15 @@ Game::Game() {
 	playerBar->SetRotation(Vector3(0, 45, 0));
 	playerBar->SetLocalPos(Vector3(0, 0.08f, 0));
 	GameObject *playerBarGO = playerBar;
+
+	GameObject *player;
+	player = new Player("Data\\Models\\aSw.obj", "Data\\Texture\\aSw.bmp", playerBar);
+	this->modelsToDelete.push_back(player->GetModelRef());
+	player->AddAnimation("Run", "Data\\Animations\\RunPlayer", 10, "run");
+	player->AddAnimation("Attack", "Data\\Animations\\AttackPlayer", 10, "attack", 31);
+	player->TranslateRotation(Vector3(0, 180, 0));
+	player->GetAllAnimations(&this->animationsToDelete);
+	player->SetName("Player");
 
 	GameObject *enemy1;
 	enemy1 = new Enemy("Data\\Models\\enemy1.obj", "Data\\Texture\\enemy1.bmp",player);
@@ -79,19 +82,33 @@ Game::~Game() {
 }
 
 void Game::Update() {
-	Light::Draw();
-	Camera::Draw();
-    this->Root->Draw();
-	
+	if (gameOver) {
+
+	}
+	else {
+		Light::Draw();
+		Camera::Draw();
+		this->Root->Draw();
+	}
 }
 
 void Game::UpdateOnTimer()
 {
-	frame++;
-	if (frame > 60) {//per sec
-		frame = 0;
+	if (gameOver) {
+
 	}
-	this->Root->FixedUpdate(frame);
-	Collider::CheckCollisions();
+	else {
+		frame++;
+		if (frame > 60) {//per sec
+			frame = 0;
+		}
+		this->Root->FixedUpdate(frame);
+		Collider::CheckCollisions();
+	}
+}
+
+void Game::GameOver()
+{
+	gameOver = true;
 }
 

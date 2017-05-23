@@ -14,6 +14,8 @@
 class Game
 {
 private:
+	static bool gameOver;
+
 	std::vector <Model*> modelsToDelete;
 	std::vector <Animation*> animationsToDelete;
 
@@ -24,6 +26,8 @@ public:
 	~Game();
 	void Update();
 	void UpdateOnTimer();
+
+	static void GameOver();
 private:
 
 };
