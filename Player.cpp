@@ -184,11 +184,19 @@ void Player::updateSwordCollider()
 
 void Player::GettingHitBy(GameObject * object)
 {
-	Vector3 dir = this->position->DirectionTo(object->GetPositionRef());
-	this->SetSpecialVector(dir);
-	this->specialAction = ACTION_GETTING_HIT;
-	this->delay = 12;
-	this->healthBar->Decrease();
+	int action = 0;
+	Enemy* e = dynamic_cast <Enemy*>(object);
+	if (e != 0) {
+		action = e->GetSpecialAction();
+	}
+
+	if (action != ACITON_E_DIE) {
+		Vector3 dir = this->position->DirectionTo(object->GetPositionRef());
+		this->SetSpecialVector(dir);
+		this->specialAction = ACTION_GETTING_HIT;
+		this->delay = 12;
+		this->healthBar->Decrease();
+	}
 }
 
 void Player::Hit(GameObject * object)

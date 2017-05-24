@@ -33,6 +33,10 @@ void Enemy::FixedUpdate(int frame) {
 		this->delay--;
 	}
 	else {
+		if (this->specialAction == ACITON_E_DIE) {
+			this->SetPosition(Vector3(1.3f, 0, -6.0f));
+			this->SetAnimation("Jump");
+		}
 		this->specialAction = ACTION_E_0;
 
 		Vector3 dir = this->position->DirectionTo(this->player->GetPositionRef());
@@ -50,8 +54,17 @@ int Enemy::GetClassID()
 	return ID_ENEMY_CLASS;
 }
 
+int Enemy::GetSpecialAction()
+{
+	return this->specialAction;
+}
+
 void Enemy::GettingHit()
 {
+	this->delay = 58;
+	this->specialAction = ACITON_E_DIE;
+	this->ResetAnimationFrame();
+	this->SetAnimation("Die");
 	//animacja umierania
 	std::cout << "I " << this->name << " want to die." << std::endl;
 }

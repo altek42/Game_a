@@ -7,6 +7,7 @@
 #define ACTION_E_0 0
 #define ACTION_E_GETTING_HIT 1
 #define ACTION_E_COLLISION_WITH_E 2
+#define ACITON_E_DIE 3
 
 class Enemy :
 	public GameObject
@@ -26,6 +27,8 @@ public:
 	void FixedUpdate(int);
 
 	int GetClassID();
+	int GetSpecialAction();
+
 	void GettingHit();
 private:
 	void OnCollision(int senderID, GameObject* object);
