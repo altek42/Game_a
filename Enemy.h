@@ -17,6 +17,8 @@ class Enemy :
 	int specialAction;
 	Vector3* specialVector;
 
+	int countSpawns;
+	Vector3* spawns;
 public:
 	GameObject * player;
 	Collider* colliderBody;
@@ -31,6 +33,9 @@ public:
 
 	void GettingHit();
 private:
+	void SetRandSpeed();
+	void Respawn();
+
 	void OnCollision(int senderID, GameObject* object);
 	void SetSpecialVector(Vector3 v);
 

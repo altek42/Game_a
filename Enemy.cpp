@@ -5,11 +5,19 @@
 Enemy::Enemy(const char*modelPath, const char*texturePath, GameObject* player) : GameObject(modelPath, texturePath)
 {
 	this->player = player;
-	this->speed = 0.02;
+
+	this->SetRandSpeed();
 
 	this->colliderBody = new Collider(0.2f, this);
 	this->specialVector = new Vector3();
 	this->specialAction = ACTION_E_0;
+
+	countSpawns = 4;
+	this->spawns = new Vector3[countSpawns];
+	this->spawns[0] = Vector3(1.3f, 0, -6.0f);
+	this->spawns[1] = Vector3(-6.0f, 0, 1.3);
+	this->spawns[2] = Vector3(9.0f, 0, 0);
+	this->spawns[3] = Vector3(1.3f, 0, 9.0f);
 }
 
 
@@ -17,6 +25,7 @@ Enemy::~Enemy()
 {
 	delete this->colliderBody;
 	delete this->specialVector;
+	delete[] this->spawns;
 }
 
 void Enemy::FixedUpdate(int frame) {
@@ -36,8 +45,7 @@ void Enemy::FixedUpdate(int frame) {
 	}
 	else {
 		if (this->specialAction == ACITON_E_DIE) {
-			this->SetPosition(Vector3(1.3f, 0, -6.0f));
-			this->SetAnimation("Jump");
+			this->Respawn();
 		}
 		this->specialAction = ACTION_E_0;
 
@@ -69,6 +77,20 @@ void Enemy::GettingHit()
 	this->SetAnimation("Die");
 	//animacja umierania
 	std::cout << "I " << this->name << " want to die." << std::endl;
+}
+
+void Enemy::SetRandSpeed()
+{
+	float r = ((rand() % 5) + 1) * 0.01;
+	this->speed = r;
+}
+
+void Enemy::Respawn()
+{
+	int r = rand() % 4;
+	this->SetPosition(this->spawns[r]);
+	this->SetAnimation("Jump");
+	this->SetRandSpeed();
 }
 
 void Enemy::OnCollision(int senderID, GameObject * object)

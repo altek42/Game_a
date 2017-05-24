@@ -17,6 +17,8 @@ class Animation;
 class GameObject
 {
 protected:
+	static GameObject* Root;
+
 	const char* name="OBJECT";
 
     std::vector <GameObject*> objectsList;
@@ -45,6 +47,7 @@ public:
     void SetScale(const Vector3&);
 	void SetAnimation(const char*);
 	void SetName(const char*);
+	void SetAsRoot();
 
     Vector3* GetPositionRef();
 	GLuint GetTextureID();

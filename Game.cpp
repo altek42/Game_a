@@ -65,6 +65,7 @@ Game::Game() {
 
 
 	this->Root = new GameObject();
+	this->Root->SetAsRoot();
 	this->Root->AttachObject(playerBarGO);
 	this->Root->AttachObject(player);
 	this->Root->AttachObject(arena);

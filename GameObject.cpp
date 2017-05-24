@@ -1,4 +1,5 @@
 #include "GameObject.h"
+GameObject* GameObject::Root = NULL;
 
 
 GameObject::GameObject() : GameObject( NULL , NULL)
@@ -61,6 +62,11 @@ void GameObject::SetAnimation(const char * name)
 void GameObject::SetName(const char * n)
 {
 	this->name = n;
+}
+
+void GameObject::SetAsRoot()
+{
+	Root = this;
 }
 
 Vector3* GameObject::GetPositionRef(){
