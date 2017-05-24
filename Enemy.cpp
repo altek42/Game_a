@@ -50,6 +50,12 @@ int Enemy::GetClassID()
 	return ID_ENEMY_CLASS;
 }
 
+void Enemy::GettingHit()
+{
+	//animacja umierania
+	std::cout << "I " << this->name << " want to die." << std::endl;
+}
+
 void Enemy::OnCollision(int senderID, GameObject * object)
 {
 	if (object->GetClassID() == ID_ENEMY_CLASS) {

@@ -106,6 +106,7 @@ void Player::FixedUpdate(int frame) {
 			this->ResetAnimationFrame();
 			this->SetAnimation("Attack");
 			this->delay = 41;
+			this->specialAction = ACTION_ATTACK;
 		}
 
 	}
@@ -121,6 +122,9 @@ void Player::OnCollision(int senderID, GameObject * object)
 	if (object->GetClassID() == ID_ENEMY_CLASS) {
 		if (senderID == PLAYER_COLLIDER) {
 			this->GettingHitBy(object);
+		}
+		if (senderID == SWORD_COLLIDER) {
+			this->Hit(object);
 		}
 
 	}
@@ -185,4 +189,14 @@ void Player::GettingHitBy(GameObject * object)
 	this->specialAction = ACTION_GETTING_HIT;
 	this->delay = 12;
 	this->healthBar->Decrease();
+}
+
+void Player::Hit(GameObject * object)
+{
+	if (this->specialAction == ACTION_ATTACK) {
+		Enemy* e = dynamic_cast <Enemy*>(object);
+		if (e != 0) {
+			e->GettingHit();
+		}
+	}
 }

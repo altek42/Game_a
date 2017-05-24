@@ -26,6 +26,7 @@ public:
 	void FixedUpdate(int);
 
 	int GetClassID();
+	void GettingHit();
 private:
 	void OnCollision(int senderID, GameObject* object);
 	void SetSpecialVector(Vector3 v);

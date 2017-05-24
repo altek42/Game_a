@@ -11,6 +11,7 @@
 
 #define ACTION_0 0
 #define ACTION_GETTING_HIT 1
+#define ACTION_ATTACK 2
 
 class Player :
 	public GameObject
@@ -41,6 +42,7 @@ private:
 
 	void updateSwordCollider();
 	void GettingHitBy(GameObject* object);
+	void Hit(GameObject* object);
 };
 
 #endif
