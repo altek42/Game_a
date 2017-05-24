@@ -21,13 +21,25 @@ GameObject::GameObject(const char *modelPath, const char *texturePath)
 			this->model->SetTextureID(Texture::CreateTexture(texturePath));
 		}
 	}
-	this->actualAnimation = NULL;
 	this->init();
 }
 
 GameObject::GameObject(Model * m)
 {
 	this->model = m;
+	this->init();
+}
+
+GameObject::GameObject(GameObject* gm)
+{
+	this->model = gm->model;
+	this->objectsList = gm->objectsList;
+	for (int i = 0; i < gm->animations.size() ; i++)
+	{
+		Animation* a = gm->animations[i];
+		this->animations.push_back(new Animation(a));
+	}
+	this->actualAnimation = gm->actualAnimation;
 	this->init();
 }
 
@@ -212,4 +224,5 @@ void GameObject::init()
 	this->scale = new Vector3(1, 1, 1);
 	this->actualAnimation = NULL;
 	this->name = "[Object]";
+	this->ResetAnimationFrame();
 }

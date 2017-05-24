@@ -24,6 +24,7 @@ public:
 	Collider* colliderBody;
 
 	Enemy(const char*, const char*,GameObject*);
+	Enemy(Enemy*);
 	~Enemy();
 
 	void FixedUpdate(int);

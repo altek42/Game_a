@@ -19,7 +19,7 @@ class GameObject
 protected:
 	static GameObject* Root;
 
-	const char* name="OBJECT";
+	const char* name;
 
     std::vector <GameObject*> objectsList;
     std::vector <GameObject*>::iterator id;
@@ -40,6 +40,7 @@ public:
 	GameObject(const char*);
 	GameObject(const char*, const char*);
 	GameObject(Model*);
+	GameObject(GameObject*);
 	virtual ~GameObject();
 
     void SetPosition(const Vector3&);

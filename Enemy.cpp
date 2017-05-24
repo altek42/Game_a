@@ -20,6 +20,19 @@ Enemy::Enemy(const char*modelPath, const char*texturePath, GameObject* player) :
 	this->spawns[3] = Vector3(1.3f, 0, 9.0f);
 }
 
+Enemy::Enemy(Enemy * e) : GameObject(e)
+{
+	this->player = e->player;
+	this->SetRandSpeed();
+
+	this->colliderBody = new Collider(0.2f, this);
+	this->specialVector = new Vector3();
+	this->specialAction = ACTION_E_0;
+
+	this->countSpawns = e->countSpawns;
+	this->spawns = e->spawns;
+}
+
 
 Enemy::~Enemy()
 {

@@ -6,7 +6,7 @@ Animation::Animation(const char* AnimationName, const char* path, int length,con
 	this->parent = parent;
 	this->SetAnimatinTime(61);
 	this->name = AnimationName;
-	this->lenght = length;
+	this->length = length;
 	this->models = new Model*[length];
 	this->frameOffset = this->calcFrameOffset();
 	//name_000000
@@ -18,7 +18,7 @@ Animation::Animation(const char* AnimationName, const char* path, int length,con
 		strcat(p, "\\");
 		strcat(p, fileName);
 		strcat(p, "_0000");
-		if (lenght >= 100) {
+		if (length >= 100) {
 			//errr
 		}
 
@@ -41,10 +41,20 @@ Animation::Animation(const char* AnimationName, const char* path, int length,con
 	
 }
 
+Animation::Animation(Animation *a)
+{
+	this->parent = a->parent;
+	this->animationTime = a->animationTime;
+	this->name = a->name;
+	this->length = a->length;
+	this->models = a->models;
+	this->frameOffset = this->calcFrameOffset();
+}
+
 
 Animation::~Animation()
 {	
-	for (int i = 0; i < lenght; i++)
+	for (int i = 0; i < length; i++)
 	{
 		delete models[i];
 	}
@@ -78,7 +88,7 @@ void Animation::FixedUpdate(int frame)
 		this->parent->IncAnimationFrame();
 		this->frameOffset = this->calcFrameOffset();
 
-		if (this->parent->GetAnimationFrame() >= this->lenght) {
+		if (this->parent->GetAnimationFrame() >= this->length) {
 			this->parent->ResetAnimationFrame();
 		}
 	}
@@ -87,5 +97,5 @@ void Animation::FixedUpdate(int frame)
 
 int Animation::calcFrameOffset()
 {
-	return ((this->animationTime+1) / this->lenght);
+	return ((this->animationTime+1) / this->length);
 }

@@ -15,7 +15,7 @@ class Animation
 	//static int frameToShow;
 
 	const char* name;
-	int lenght;
+	int length;
 	int frameOffset;
 	Model** models;
 
@@ -26,6 +26,7 @@ public:
 	//static void RestartAnimation();
 	
 	Animation(const char*,const char*,int, const char*, GameObject*);
+	Animation(Animation*);
 	~Animation();
 
 	const char* GetName();
