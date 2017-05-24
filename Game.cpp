@@ -46,7 +46,8 @@ Game::Game() {
 	enemy1 = new Enemy("Data\\Models\\enemy1.obj", "Data\\Texture\\enemy1.bmp",player);
 	this->modelsToDelete.push_back(enemy1->GetModelRef());
 	enemy1->AddAnimation("Jump", "Data\\Animations\\JumpEnemy1", 9, "enemy1_jump", 31);
-	enemy1->SetAnimation("Jump");
+	enemy1->AddAnimation("Die", "Data\\Animations\\DieEnemy1", 9, "enemy1die", 60);
+	enemy1->SetAnimation("Die");
 	enemy1->GetAllAnimations(&this->animationsToDelete);
 	enemy1->TranslatePosition(Vector3(3.0f, 0.0f, 0.0f));
 	enemy1->SetName("Zielony{1}");
