@@ -1,5 +1,7 @@
 #include <GL/glut.h>
 #include <GL/freeglut.h>
+#include <cstdlib>
+#include <ctime>
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Game.h"
@@ -14,6 +16,7 @@ Game *game;
 int window;
 int main(int argc, char **argv) 
 {
+	srand(time(NULL));
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(100,100);				

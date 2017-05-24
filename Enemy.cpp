@@ -25,7 +25,9 @@ void Enemy::FixedUpdate(int frame) {
 	if (this->specialAction != ACTION_E_0) {
 		if (this->specialAction == ACTION_E_COLLISION_WITH_E) {
 			Vector3 dir = Vector3(this->specialVector);
-			this->TranslatePosition(dir*speed);
+			float r = (rand()%5) *0.000001f;
+			this->TranslatePosition(Vector3(r, 0, r));
+			this->TranslatePosition(dir*2*speed);
 		}
 	}
 
@@ -45,7 +47,7 @@ void Enemy::FixedUpdate(int frame) {
 		angle = (dir.GetZ() > 0) ? -1 * angle + 180 : angle;
 		this->SetRotation(Vector3(0, angle, 0));
 
-		//this->TranslatePosition(dir * -speed);
+		this->TranslatePosition(dir * -speed);
 	}
 }
 
@@ -72,10 +74,12 @@ void Enemy::GettingHit()
 void Enemy::OnCollision(int senderID, GameObject * object)
 {
 	if (object->GetClassID() == ID_ENEMY_CLASS) {
-		Vector3 dir = this->position->DirectionTo(object->GetPositionRef());
-		this->SetSpecialVector(dir);
-		this->specialAction = ACTION_E_COLLISION_WITH_E;
-		this->delay = 12;
+		if (this->specialAction == ACTION_E_0) {
+			Vector3 dir = this->position->DirectionTo(object->GetPositionRef());
+			this->SetSpecialVector(dir);
+			this->specialAction = ACTION_E_COLLISION_WITH_E;
+			this->delay = 12;
+		}
 	}
 }
 
