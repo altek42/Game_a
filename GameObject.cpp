@@ -37,7 +37,7 @@ GameObject::GameObject(GameObject* gm)
 	for (int i = 0; i < gm->animations.size() ; i++)
 	{
 		Animation* a = gm->animations[i];
-		this->animations.push_back(new Animation(a));
+		this->animations.push_back(new Animation(a,this));
 	}
 	this->actualAnimation = gm->actualAnimation;
 	this->init();

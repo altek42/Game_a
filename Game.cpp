@@ -66,6 +66,7 @@ Game::Game() {
 	Enemy *enemy3 = new Enemy(enemy2);
 	enemy3->TranslatePosition(Vector3(-3.0f, 0.0f, -3.0f));
 	enemy3->SetName("Niebieski{3}");
+	enemy3->SetAnimation("Jump");
 
 
 	GameObject* e2 = enemy2;

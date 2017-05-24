@@ -41,10 +41,11 @@ Animation::Animation(const char* AnimationName, const char* path, int length,con
 	
 }
 
-Animation::Animation(Animation *a)
+Animation::Animation(Animation *a, GameObject* p)
 {
-	this->parent = a->parent;
+	this->parent = p;
 	this->animationTime = a->animationTime;
+
 	this->name = a->name;
 	this->length = a->length;
 	this->models = a->models;

@@ -26,7 +26,7 @@ public:
 	//static void RestartAnimation();
 	
 	Animation(const char*,const char*,int, const char*, GameObject*);
-	Animation(Animation*);
+	Animation(Animation*, GameObject* parent);
 	~Animation();
 
 	const char* GetName();
