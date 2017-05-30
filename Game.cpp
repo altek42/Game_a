@@ -15,7 +15,8 @@ Game::Game() {
 	this->modelsToDelete.push_back(arena->GetModelRef());
 	arena->TranslatePosition(Vector3(0, -0.9, 0));
 
-	this->TextGameOver = new TextPlane("Data\\Models\\plane.obj", "Data\\Texture\\planeGameOver.bmp");
+	//this->TextGameOver = new TextPlane("Data\\Models\\plane.obj", "Data\\Texture\\planeGameOver.bmp");
+	this->TextGameOver = new UIElement("Data\\Models\\plane.obj", "Data\\Texture\\enemy1.bmp");
 	this->TextGameOver->SetScale(Vector3(-0.1f));
 	this->TextGameOver->SetRotation(Vector3(0, 45, 0));
 
@@ -108,7 +109,9 @@ void Game::Update() {
 	}
 	else {
 		this->Root->Draw();
+		//UICanvas::GetInstance()->Draw();
 	}
+	
 }
 
 void Game::UpdateOnTimer()
@@ -124,6 +127,7 @@ void Game::UpdateOnTimer()
 	else {
 		this->Root->FixedUpdate(frame);
 		Collider::CheckCollisions();
+		//UICanvas::GetInstance()->FixedUpdate(frame);
 	}
 }
 

@@ -5,12 +5,12 @@
 #include "Camera.h"
 #include "Keyboard.h"
 
-class TextPlane :
+class UIElement :
 	public GameObject
 {
 public:
-	TextPlane(const char* mp, const char* tp);
-	~TextPlane();
+	UIElement(const char* mp, const char* tp);
+	~UIElement();
 
 	void Draw();
 	void FixedUpdate(int);

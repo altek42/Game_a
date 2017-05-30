@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 	glutInitWindowPosition(100,100);				
 	glutInitWindowSize(640,480);					
 	
-	window=glutCreateWindow("Projekt_0.3");				
+	window=glutCreateWindow("Projekt_0.7");				
 	InitGL();										
 	
 	glutDisplayFunc(DrawGLScene);					
@@ -50,6 +50,8 @@ void ReSizeGLScene(GLsizei width, GLsizei height)
 	glLoadIdentity();									// Reset The Projection Matrix
 	// Calculate The Aspect Ratio Of The Window
 	gluPerspective(45.0f,(GLfloat)width/(GLfloat)height,0.1f,100.0f);
+	//glOrtho(0, width, height, 0, 0.1f, 100.0f); //left,right,bottom,top
+	
 	glMatrixMode(GL_MODELVIEW);							// Select The Modelview Matrix
 	glLoadIdentity();									// Reset The Modelview Matrix
 }

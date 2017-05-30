@@ -11,6 +11,7 @@
 #include "Enemy.h"
 #include "HealthBar.h"
 #include "TextPlane.h"
+#include "UICanvas.h"
 
 class Game
 {
@@ -22,7 +23,7 @@ private:
 
 	int frame;
 	GameObject *Root;
-	TextPlane* TextGameOver;
+	UIElement* TextGameOver;
 public:
 	Game();
 	~Game();
