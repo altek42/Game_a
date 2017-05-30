@@ -1,10 +1,14 @@
-#include "TextPlane.h"
+#include "UIElement.h"
 
 
 
 UIElement::UIElement(const char* mp, const char* tp) : GameObject(mp,tp)
 {
+	this->SetRotation(Vector3(0, 45, 0));
+}
 
+UIElement::UIElement(const char * mp) : UIElement(mp,NULL)
+{
 }
 
 
@@ -22,7 +26,7 @@ void UIElement::Draw()
 
 void UIElement::FixedUpdate(int frame)
 {
-	if (Keyboard::isPressed('r')) {
+	/*if (Keyboard::isPressed('r')) {
 		//restart
-	}
+	}*/
 }

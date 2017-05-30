@@ -18,7 +18,10 @@ Game::Game() {
 	//this->TextGameOver = new TextPlane("Data\\Models\\plane.obj", "Data\\Texture\\planeGameOver.bmp");
 	this->TextGameOver = new UIElement("Data\\Models\\plane.obj", "Data\\Texture\\enemy1.bmp");
 	this->TextGameOver->SetScale(Vector3(-0.1f));
-	this->TextGameOver->SetRotation(Vector3(0, 45, 0));
+
+	GameObject* counter = new UICounter("Data\\Models\\counter.obj", "Data\\Texture\\counter", "counter", 100);
+	counter->SetScale(Vector3(0.03f));
+
 
 
 	HealthBar *playerBar;
@@ -81,6 +84,7 @@ Game::Game() {
 	this->Root->AttachObject(enemy1);
 	this->Root->AttachObject(e2);
 	this->Root->AttachObject(e3);
+	this->Root->AttachObject(counter);
 
 	Camera::SetPosition(Vector3(3));
 	Camera::SetTarget(player);
@@ -109,7 +113,6 @@ void Game::Update() {
 	}
 	else {
 		this->Root->Draw();
-		//UICanvas::GetInstance()->Draw();
 	}
 	
 }
@@ -127,7 +130,6 @@ void Game::UpdateOnTimer()
 	else {
 		this->Root->FixedUpdate(frame);
 		Collider::CheckCollisions();
-		//UICanvas::GetInstance()->FixedUpdate(frame);
 	}
 }
 

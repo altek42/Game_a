@@ -10,8 +10,8 @@
 #include "Light.h"
 #include "Enemy.h"
 #include "HealthBar.h"
-#include "TextPlane.h"
-#include "UICanvas.h"
+#include "UIElement.h"
+#include "UICounter.h"
 
 class Game
 {

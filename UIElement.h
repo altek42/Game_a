@@ -10,10 +10,11 @@ class UIElement :
 {
 public:
 	UIElement(const char* mp, const char* tp);
+	UIElement(const char* mp);
 	~UIElement();
 
-	void Draw();
-	void FixedUpdate(int);
+	virtual void Draw();
+	virtual void FixedUpdate(int);
 };
 
 #endif
