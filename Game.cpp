@@ -16,12 +16,14 @@ Game::Game() {
 	arena->TranslatePosition(Vector3(0, -0.9, 0));
 
 	//this->TextGameOver = new TextPlane("Data\\Models\\plane.obj", "Data\\Texture\\planeGameOver.bmp");
-	this->TextGameOver = new UIElement("Data\\Models\\plane.obj", "Data\\Texture\\enemy1.bmp");
+	this->TextGameOver = new UIElement("Data\\Models\\plane.obj", "Data\\Texture\\planeGameOver.bmp");
 	this->TextGameOver->SetScale(Vector3(-0.1f));
 
-	GameObject* counter = new UICounter("Data\\Models\\counter.obj", "Data\\Texture\\counter", "counter", 100);
+	UICounter::CreateInstance("Data\\Models\\counter.obj", "Data\\Texture\\counter", "counter", 100);
+	UICounter* counter = UICounter::GetInstance();
 	counter->SetScale(Vector3(0.03f));
-
+	counter->SetLocalPosition(Vector3(0,-0.14f,0));
+	GameObject* counterGO = counter;
 
 
 	HealthBar *playerBar;
@@ -84,7 +86,7 @@ Game::Game() {
 	this->Root->AttachObject(enemy1);
 	this->Root->AttachObject(e2);
 	this->Root->AttachObject(e3);
-	this->Root->AttachObject(counter);
+	this->Root->AttachObject(counterGO);
 
 	Camera::SetPosition(Vector3(3));
 	Camera::SetTarget(player);

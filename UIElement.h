@@ -8,10 +8,13 @@
 class UIElement :
 	public GameObject
 {
+	Vector3* localPos;
 public:
 	UIElement(const char* mp, const char* tp);
 	UIElement(const char* mp);
 	~UIElement();
+
+	void SetLocalPosition(const Vector3&);
 
 	virtual void Draw();
 	virtual void FixedUpdate(int);

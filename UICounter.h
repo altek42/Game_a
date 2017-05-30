@@ -7,12 +7,20 @@
 class UICounter :
 	public UIElement
 {
+	static UICounter* _instance;
+
 	GLuint* numbers;
 	int count;
 	int pointer;
-public:
+
 	UICounter(const char* mp, const char* tp, const char* tname,int count);
 	~UICounter();
+public:
+	static void CreateInstance(const char* mp, const char* tp, const char* tname, int count);
+	static void DestroyInstance();
+	static UICounter* GetInstance();
+
+	void Increment();
 
 	void Draw();
 	void FixedUpdate(int);

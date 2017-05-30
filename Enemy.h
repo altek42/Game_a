@@ -2,7 +2,7 @@
 #define ENEMY_CLASS_H
 #include <iostream>
 #include "GameObject.h"
-
+#include "UICounter.h"
 
 #define ACTION_E_0 0
 #define ACTION_E_GETTING_HIT 1

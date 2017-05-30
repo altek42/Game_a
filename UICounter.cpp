@@ -1,6 +1,5 @@
 #include "UICounter.h"
-
-
+UICounter* UICounter::_instance = NULL;
 
 UICounter::UICounter(const char* mp, const char* tp, const char* tname, int count) : UIElement (mp)
 {
@@ -40,6 +39,33 @@ UICounter::UICounter(const char* mp, const char* tp, const char* tname, int coun
 UICounter::~UICounter()
 {
 	delete[] this->numbers;
+	_instance = NULL;
+}
+
+void UICounter::CreateInstance(const char * mp, const char * tp, const char * tname, int count)
+{
+	if (_instance != NULL) {
+		delete _instance;
+	}
+	_instance = new UICounter(mp, tp, tname, count);
+}
+
+void UICounter::DestroyInstance()
+{
+	delete _instance;
+}
+
+UICounter * UICounter::GetInstance()
+{
+	return _instance;
+}
+
+void UICounter::Increment()
+{
+	this->pointer++;
+	if (this->pointer < this->count) {
+		this->model->SetTextureID(this->numbers[pointer]);
+	}
 }
 
 void UICounter::Draw()

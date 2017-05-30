@@ -97,7 +97,11 @@ void OnTimer(int id) {
 		Camera::Delete();
 		glutDestroyWindow(window);
 	}
-	
+	/*if (Keyboard::GetKey() == 'i') { //cuda sie dzieja
+		delete game;
+		game = new Game();
+	}*/
+
 	Keyboard::FixedUpdate();
 	game->UpdateOnTimer();
 }

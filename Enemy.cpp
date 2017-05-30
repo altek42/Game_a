@@ -89,7 +89,7 @@ void Enemy::GettingHit()
 	this->ResetAnimationFrame();
 	this->SetAnimation("Die");
 	//animacja umierania
-	std::cout << "I " << this->name << " want to die." << std::endl;
+	//std::cout << "I " << this->name << " want to die." << std::endl;
 }
 
 void Enemy::SetRandSpeed()
@@ -104,6 +104,7 @@ void Enemy::Respawn()
 	this->SetPosition(this->spawns[r]);
 	this->SetAnimation("Jump");
 	this->SetRandSpeed();
+	UICounter::GetInstance()->Increment();
 }
 
 void Enemy::OnCollision(int senderID, GameObject * object)
