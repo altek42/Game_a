@@ -61,16 +61,39 @@ void Collider::SetID(int x)
 
 void Collider::CheckCollisionWith(Collider * c)
 {
-	Vector3 v = (this->GetPosition2() ) - c->GetPosition2();
+	if (this->ID == ARENA_COLLIDER || c->GetID() == ARENA_COLLIDER) {
+		if (this->ID == ARENA_COLLIDER && c->ID == PLAYER_COLLIDER) {
+			Vector3 v = c->GetPosition2();
+			float xL = v.GetX() - c->radius + this->GetPosition2().GetX();
+			float xR = v.GetX() + c->radius + this->GetPosition2().GetX();
+			float zU = v.GetZ() - c->radius + this->GetPosition2().GetZ();
+			float zD = v.GetZ() + c->radius + this->GetPosition2().GetZ();
+			if (xL < -this->radius) {
+				c->GetParent()->OnCollision(this->ID, this->parent);
+			}
+			else if (xR > this->radius) {
+				c->GetParent()->OnCollision(this->ID, this->parent);
+			}
+			else if (zU < -this->radius) {
+				c->GetParent()->OnCollision(this->ID, this->parent);
+			}
+			else if (zD > this->radius) {
+				c->GetParent()->OnCollision(this->ID, this->parent);
+			}
+		}
+	}
+	else {
+		Vector3 v = (this->GetPosition2() ) - c->GetPosition2();
 	
-	float distance = v.GetLenght();
-	float r = this->radius + c->radius;
-	if (distance < r) {
-		this->parent->OnCollision(this->GetID(), c->parent);
-		/*std::cout << "Distance:" << distance << std::ends;
-		std::cout << "\tRad:" << r << std::ends;
-		std::cout << "\tID:" << this->ID << std::ends;
-		std::cout << "\tParent:" << this->parent->GetName() << std::endl;*/
+		float distance = v.GetLenght();
+		float r = this->radius + c->radius;
+		if (distance < r) {
+			this->parent->OnCollision(this->GetID(), c->parent);
+			/*std::cout << "Distance:" << distance << std::ends;
+			std::cout << "\tRad:" << r << std::ends;
+			std::cout << "\tID:" << this->ID << std::ends;
+			std::cout << "\tParent:" << this->parent->GetName() << std::endl;*/
+		}
 	}
 }
 

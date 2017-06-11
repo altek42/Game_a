@@ -6,6 +6,7 @@
 #include "Collider.h"
 #include "HealthBar.h"
 #include "Game.h"
+#include <iostream>
 
 #define DIAG_SPEED_MODIFIER 0.81f
 

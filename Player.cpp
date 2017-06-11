@@ -126,7 +126,13 @@ void Player::OnCollision(int senderID, GameObject * object)
 		if (senderID == SWORD_COLLIDER) {
 			this->Hit(object);
 		}
-
+	}
+	else if (senderID == ARENA_COLLIDER) {
+		Vector3 dir = this->position->DirectionTo(object->GetPositionRef());
+		dir.SetY(0);
+		this->SetSpecialVector(dir*-0.5f);
+		this->specialAction = ACTION_GETTING_HIT;
+		this->delay = 1;
 	}
 }
 

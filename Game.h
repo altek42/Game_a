@@ -12,6 +12,7 @@
 #include "HealthBar.h"
 #include "UIElement.h"
 #include "UICounter.h"
+#include "Arena.h"
 
 class Enemy;
 class Game

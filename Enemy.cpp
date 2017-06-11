@@ -72,7 +72,7 @@ void Enemy::FixedUpdate(int frame) {
 		angle = (dir.GetZ() > 0) ? -1 * angle + 180 : angle;
 		this->SetRotation(Vector3(0, angle, 0));
 
-		this->TranslatePosition(dir * -speed);
+		//this->TranslatePosition(dir * -speed);
 	}
 }
 

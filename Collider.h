@@ -8,6 +8,7 @@
 #define SWORD_COLLIDER 1
 #define PLAYER_COLLIDER 2
 #define ENEMY_COLLIDER 3
+#define ARENA_COLLIDER 4
 
 class GameObject;
 class Collider

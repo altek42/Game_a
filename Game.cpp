@@ -12,7 +12,7 @@ Game::Game() {
 	float spe[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	Light::CreateLight(amb, dif, spe);
 
-	GameObject *arena = new GameObject("Data\\Models\\arena.obj", "Data\\Texture\\arena.bmp");
+	GameObject *arena = new Arena("Data\\Models\\arena.obj", "Data\\Texture\\arena.bmp");
 	this->modelsToDelete.push_back(arena->GetModelRef());
 	arena->TranslatePosition(Vector3(0, -0.9, 0));
 
