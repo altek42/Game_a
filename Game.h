@@ -13,9 +13,11 @@
 #include "UIElement.h"
 #include "UICounter.h"
 
+class Enemy;
 class Game
 {
 private:
+	static Game* _instance;
 	static bool gameOver;
 
 	std::vector <Model*> modelsToDelete;
@@ -24,11 +26,14 @@ private:
 	int frame;
 	GameObject *Root;
 	UIElement* TextGameOver;
-public:
+	
 	Game();
+public:
+	static Game* GetInstance();
 	~Game();
 	void Update();
 	void UpdateOnTimer();
+	GameObject* GetRootObject();
 
 	static void GameOver();
 private:

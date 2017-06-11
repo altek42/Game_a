@@ -48,8 +48,9 @@ GameObject::~GameObject()
     delete this->position;
     delete this->rotation;
     delete this->scale;
-	for (id = this->objectsList.begin(); id != this->objectsList.end(); id++) {
-		delete (*id);
+	for (int i = 0; i < this->objectsList.size(); i++)
+	{
+		delete objectsList[i];
 	}
 }
 
@@ -172,15 +173,16 @@ void GameObject::Draw(){
                  this->scale->GetZ()
                );
 
-        for(id = this->objectsList.begin(); id != this->objectsList.end(); id++){
-            (*id)->Draw();
-        }
+		for (int i = 0; i < this->objectsList.size(); i++)
+		{
+			objectsList[i]->Draw();
+		}
 
 		bool anim = false;
 		if (this->actualAnimation != NULL) {
-			for (idAnim = this->animations.begin(); idAnim != this->animations.end(); idAnim++) {
-				if (strcmp(actualAnimation, (*idAnim)->GetName()) == 0 ) {
-					(*idAnim)->Draw();
+			for (int i = 0; i < animations.size(); i++){
+				if (strcmp(actualAnimation, animations[i]->GetName()) == 0) {
+					animations[i]->Draw();
 					anim = true;
 					break;
 				}
@@ -195,13 +197,13 @@ void GameObject::Draw(){
 
 void GameObject::FixedUpdate(int frame)
 {
-	for (id = this->objectsList.begin(); id != this->objectsList.end(); id++) {
-		(*id)->FixedUpdate(frame);
+	for (int i = 0; i < this->objectsList.size(); i++){
+		objectsList[i]->FixedUpdate(frame);
 	}
 	if (this->actualAnimation != NULL) {
-		for (idAnim = this->animations.begin(); idAnim != this->animations.end(); idAnim++) {
-			if (strcmp(actualAnimation, (*idAnim)->GetName()) == 0) {
-				(*idAnim)->FixedUpdate(frame);
+		for (int i = 0; i < animations.size(); i++) {
+			if (strcmp(actualAnimation, animations[i]->GetName()) == 0) {
+				animations[i]->FixedUpdate(frame);
 				break;
 			}
 		}

@@ -22,10 +22,10 @@ protected:
 	const char* name;
 
     std::vector <GameObject*> objectsList;
-    std::vector <GameObject*>::iterator id;
+    //std::vector <GameObject*>::iterator id;
 
 	std::vector <Animation*> animations;
-	std::vector <Animation*>::iterator idAnim;
+	//std::vector <Animation*>::iterator idAnim;
 
     Vector3* position;
     Vector3* rotation;

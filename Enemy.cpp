@@ -31,6 +31,7 @@ Enemy::Enemy(Enemy * e) : GameObject(e)
 
 	this->countSpawns = e->countSpawns;
 	this->spawns = e->spawns;
+	this->Respawn();
 }
 
 
@@ -59,6 +60,9 @@ void Enemy::FixedUpdate(int frame) {
 	else {
 		if (this->specialAction == ACITON_E_DIE) {
 			this->Respawn();
+			GameObject* newEnemy = new Enemy(this);
+			Game::GetInstance()->GetRootObject()->AttachObject(newEnemy);
+			UICounter::GetInstance()->Increment();
 		}
 		this->specialAction = ACTION_E_0;
 
@@ -104,7 +108,6 @@ void Enemy::Respawn()
 	this->SetPosition(this->spawns[r]);
 	this->SetAnimation("Jump");
 	this->SetRandSpeed();
-	UICounter::GetInstance()->Increment();
 }
 
 void Enemy::OnCollision(int senderID, GameObject * object)

@@ -12,7 +12,6 @@ void ReSizeGLScene(GLsizei, GLsizei);
 void DrawGLScene(GLvoid);								
 void OnTimer(int);
 int InitGL(void);										
-Game *game;
 int window;
 int main(int argc, char **argv) 
 {
@@ -71,7 +70,6 @@ int InitGL(void)
 	
 
 	glEnable(GL_TEXTURE_2D);
-    game = new Game();
 	return true;										// Initialization Went OK
 }
 
@@ -81,7 +79,7 @@ void DrawGLScene(GLvoid)
 	glLoadIdentity();
 
 	Mouse::Update();
-	game->Update();
+	Game::GetInstance()->Update();
 
 	Keyboard::Update();
 
@@ -95,6 +93,7 @@ void OnTimer(int id) {
 
 	if (Keyboard::GetKey() == 'k') {
 		Camera::Delete();
+		delete Game::GetInstance();
 		glutDestroyWindow(window);
 	}
 	/*if (Keyboard::GetKey() == 'i') { //cuda sie dzieja
@@ -103,5 +102,5 @@ void OnTimer(int id) {
 	}*/
 
 	Keyboard::FixedUpdate();
-	game->UpdateOnTimer();
+	Game::GetInstance()->UpdateOnTimer();
 }
