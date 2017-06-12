@@ -7,8 +7,10 @@
 class Keyboard
 {
 	static int delay;
+	static int delayUp;
 	static bool keyState[256];
 	static unsigned char key;
+	static unsigned char keyUp;
 public:
 	static void Update();
 	static void FixedUpdate();
@@ -16,6 +18,7 @@ public:
 	static void OnKeyUp(unsigned char, int, int);
 	static bool isPressed(unsigned char);
 	static char GetKey();
+	static char GetKeyUp();
 private:
 	Keyboard();
 	~Keyboard();

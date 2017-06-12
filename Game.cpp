@@ -6,6 +6,8 @@ bool Game::gameOver=false;
 
 Game::Game() {
 	this->frame = 0;
+	this->isStart = true;
+	this->isInstruction = false;
 
 	float amb[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	float dif[] = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -19,6 +21,9 @@ Game::Game() {
 	//this->TextGameOver = new TextPlane("Data\\Models\\plane.obj", "Data\\Texture\\planeGameOver.bmp");
 	this->TextGameOver = new UIElement("Data\\Models\\plane.obj", "Data\\Texture\\planeGameOver.bmp");
 	this->TextGameOver->SetScale(Vector3(-0.1f));
+
+	this->Menu = new UIElement("Data\\Models\\plane.obj", "Data\\Texture\\planeStart.bmp");
+	this->Menu->SetScale(Vector3(-0.1f));
 
 	UICounter::CreateInstance("Data\\Models\\counter.obj", "Data\\Texture\\counter", "counter", 100);
 	UICounter* counter = UICounter::GetInstance();
@@ -111,7 +116,10 @@ void Game::Update() {
 	Camera::Draw();
 	Light::Draw();
 	
-	if (gameOver) {
+	if (isStart || isInstruction) {
+		this->Menu->Draw();
+	}
+	else if (gameOver) {
 		this->TextGameOver->Draw();
 	}
 	else {
@@ -127,10 +135,26 @@ void Game::UpdateOnTimer()
 		frame = 0;
 	}
 
+	if (isInstruction == true) {
+		//if (Keyboard::isPressed('f')) {
+		if (Keyboard::GetKey() == 'w') {
+			isInstruction = false;
+			return;
+		}
+	}
+	else if (isStart == true) {
+		//if (Keyboard::isPressed('f')) {
+		if (Keyboard::GetKey() == 'f') {
+			this->Menu->GetModelRef()->SetTextureID(Texture::CreateTexture("Data\\Texture\\planeInstruction.bmp"));
+			isInstruction = true;
+			isStart = false;
+			return;
+		}
+	}
 	if (gameOver) {
 		this->TextGameOver->FixedUpdate(frame);
 	}
-	else {
+	else if (isStart == false && isInstruction == false ){
 		this->Root->FixedUpdate(frame);
 		Collider::CheckCollisions();
 	}

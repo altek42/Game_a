@@ -1,8 +1,10 @@
 #include "Keyboard.h"
 
 int Keyboard::delay = 0;;
+int Keyboard::delayUp = 0;;
 bool Keyboard::keyState[256];
 unsigned char Keyboard::key = 0;
+unsigned char Keyboard::keyUp = 0;
 
 Keyboard::Keyboard() {
 }
@@ -22,6 +24,12 @@ void Keyboard::FixedUpdate(){
 	else if (delay > 0) {
 		delay--;
 	}
+	if (delayUp <= 0) {
+		keyUp = 0;
+	}
+	else if (delayUp > 0) {
+		delay--;
+	}
 }
 
 void Keyboard::OnKeyPress(unsigned char _key, int x, int y) {
@@ -33,9 +41,13 @@ void Keyboard::OnKeyPress(unsigned char _key, int x, int y) {
     //std::cout << "key: "<<key<<"   x: "<<x<<"   y: "<<y << std::endl;
 }
 
-void Keyboard::OnKeyUp(unsigned char key, int x, int y)
+void Keyboard::OnKeyUp(unsigned char _key, int x, int y)
 {
-	keyState[key] = false;
+	if (keyState[_key]) {
+		keyUp = _key;
+		delayUp = 100000;
+	}
+	keyState[_key] = false;
 }
 
 bool Keyboard::isPressed(unsigned char key)
@@ -45,4 +57,9 @@ bool Keyboard::isPressed(unsigned char key)
 
 char Keyboard::GetKey(){
     return key;
+}
+
+char Keyboard::GetKeyUp()
+{
+	return keyUp;
 }

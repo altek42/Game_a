@@ -21,12 +21,16 @@ private:
 	static Game* _instance;
 	static bool gameOver;
 
+	bool isStart;
+	bool isInstruction;
+
 	std::vector <Model*> modelsToDelete;
 	std::vector <Animation*> animationsToDelete;
 
 	int frame;
 	GameObject *Root;
 	UIElement* TextGameOver;
+	UIElement* Menu;
 	
 	Game();
 public:
