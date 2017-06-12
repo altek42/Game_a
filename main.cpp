@@ -93,7 +93,7 @@ void OnTimer(int id) {
 
 	if (Keyboard::GetKey() == 'k') {
 		Camera::Delete();
-		delete Game::GetInstance();
+		//delete Game::GetInstance();
 		glutDestroyWindow(window);
 	}
 	/*if (Keyboard::GetKey() == 'i') { //cuda sie dzieja
