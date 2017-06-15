@@ -38,7 +38,6 @@ void Keyboard::OnKeyPress(unsigned char _key, int x, int y) {
 		delay = 10;
 	}
 	keyState[key] = true;
-    //std::cout << "key: "<<key<<"   x: "<<x<<"   y: "<<y << std::endl;
 }
 
 void Keyboard::OnKeyUp(unsigned char _key, int x, int y)

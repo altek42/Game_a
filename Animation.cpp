@@ -9,7 +9,6 @@ Animation::Animation(const char* AnimationName, const char* path, int length,con
 	this->length = length;
 	this->models = new Model*[length];
 	this->frameOffset = this->calcFrameOffset();
-	//name_000000
 
 	for (int i = 0; i < length; i++)
 	{
@@ -74,12 +73,6 @@ void Animation::SetAnimatinTime(int frameLenght)
 
 void Animation::Draw()
 {
-	
-	/*float f = (float)frame / 61.0f;
-	int n = f*lenght;*/
-
-	//std::cout << "N: " << frameToShow <<"Frame: "<<frame<< std::endl;
-	
 	models[this->parent->GetAnimationFrame()]->Draw();
 }
 

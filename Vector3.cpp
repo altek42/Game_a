@@ -127,12 +127,9 @@ Vector3 Vector3::DirectionTo(Vector3 * target)
 	float y = (this->GetY() - target->GetY());
 	float z = (this->GetZ() - target->GetZ());
 
-	//float f[] = { fabs(x),fabs(y),fabs(z) };
-	//float max = *std::max_element(f, f + 7);
 	float len = Vector3(x, y, z).GetLenght();
 	float sum = fabs(x) + fabs(y) + fabs(z);
 	if (sum != 0) {
-		//x = x < 0 ? fabs(x) / sum
 		x = x / sum;
 		y = y / sum;
 		z = z / sum;

@@ -12,8 +12,6 @@
 class GameObject;
 class Animation
 {
-	//static int frameToShow;
-
 	const char* name;
 	int length;
 	int frameOffset;
@@ -23,8 +21,6 @@ class Animation
 
 	int animationTime;
 public:
-	//static void RestartAnimation();
-	
 	Animation(const char*,const char*,int, const char*, GameObject*);
 	Animation(Animation*, GameObject* parent);
 	~Animation();

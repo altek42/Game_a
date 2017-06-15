@@ -86,10 +86,7 @@ void Model::Draw()
 	glMaterialfv(GL_FRONT, GL_SPECULAR, m0_spe);
 	glMaterialf(GL_FRONT, GL_SHININESS, 20.0f);
 
-	//glColor3f(0.5, 0.5, 0.5);
 	glFrontFace(GL_CW);
-	//glPolygonMode(GL_FRONT, GL_FILL);
-	//glPolygonMode(GL_BACK, GL_LINE);
 	if (textureID != NULL) {
 		glBindTexture(GL_TEXTURE_2D, textureID);
 	}

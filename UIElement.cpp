@@ -35,7 +35,5 @@ void UIElement::Draw()
 
 void UIElement::FixedUpdate(int frame)
 {
-	/*if (Keyboard::isPressed('r')) {
-		//restart
-	}*/
+	
 }

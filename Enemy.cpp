@@ -88,12 +88,12 @@ int Enemy::GetSpecialAction()
 
 void Enemy::GettingHit()
 {
-	this->delay = 58;
-	this->specialAction = ACITON_E_DIE;
-	this->ResetAnimationFrame();
-	this->SetAnimation("Die");
-	//animacja umierania
-	//std::cout << "I " << this->name << " want to die." << std::endl;
+	if (this->specialAction != ACITON_E_DIE) {
+		this->delay = 58;
+		this->specialAction = ACITON_E_DIE;
+		this->ResetAnimationFrame();
+		this->SetAnimation("Die");
+	}
 }
 
 void Enemy::SetRandSpeed()

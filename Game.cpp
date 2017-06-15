@@ -18,7 +18,6 @@ Game::Game() {
 	this->modelsToDelete.push_back(arena->GetModelRef());
 	arena->TranslatePosition(Vector3(0, -0.9, 0));
 
-	//this->TextGameOver = new TextPlane("Data\\Models\\plane.obj", "Data\\Texture\\planeGameOver.bmp");
 	this->TextGameOver = new UIElement("Data\\Models\\plane.obj", "Data\\Texture\\planeGameOver.bmp");
 	this->TextGameOver->SetScale(Vector3(-0.1f));
 
@@ -136,14 +135,12 @@ void Game::UpdateOnTimer()
 	}
 
 	if (isInstruction == true) {
-		//if (Keyboard::isPressed('f')) {
 		if (Keyboard::GetKey() == 'w') {
 			isInstruction = false;
 			return;
 		}
 	}
 	else if (isStart == true) {
-		//if (Keyboard::isPressed('f')) {
 		if (Keyboard::GetKey() == 'f') {
 			this->Menu->GetModelRef()->SetTextureID(Texture::CreateTexture("Data\\Texture\\planeInstruction.bmp"));
 			isInstruction = true;
